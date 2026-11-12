@@ -59,14 +59,13 @@
       padding: 0;
       width: 100%;
       min-height: 100%;
-      background-color: #E2E8F0; /* Neutral outer backdrop if viewed on wider browser, strictly framing mobile viewport */
+      background-color: #E2E8F0;
       font-family: 'Inter', sans-serif;
       color: #0F172A;
       overflow-x: hidden;
       overscroll-behavior-y: none;
     }
 
-    /* Mobile Viewport Container (Strictly 320px - 480px native frame) */
     #mobile-app-shell {
       width: 100%;
       max-width: 480px;
@@ -81,7 +80,6 @@
       overflow-x: hidden;
     }
 
-    /* Hide scrollbars on horizontal carousels while keeping smooth touch scroll */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -90,46 +88,22 @@
       scrollbar-width: none;
     }
 
-    /* Safe Area Insets */
-    .pt-safe {
-      padding-top: max(12px, env(safe-area-inset-top));
-    }
-    .pb-safe {
-      padding-bottom: max(12px, env(safe-area-inset-bottom));
-    }
-    .bottom-nav-padding {
-      padding-bottom: calc(84px + env(safe-area-inset-bottom));
-    }
-    .sticky-cta-padding {
-      padding-bottom: calc(96px + env(safe-area-inset-bottom));
-    }
+    .pt-safe { padding-top: max(12px, env(safe-area-inset-top)); }
+    .pb-safe { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+    .bottom-nav-padding { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+    .sticky-cta-padding { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
 
-    /* Smooth Screen Transitions */
     .screen-enter {
       animation: screenFadeSlide 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     @keyframes screenFadeSlide {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Bottom Sheet Slide Animation */
-    .sheet-backdrop {
-      transition: opacity 0.25s ease;
-    }
-    .sheet-panel {
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      max-width: 480px;
-      margin: 0 auto;
-    }
+    .sheet-backdrop { transition: opacity 0.25s ease; }
+    .sheet-panel { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); max-width: 480px; margin: 0 auto; }
 
-    /* Ticket Perforation Cutouts */
     .ticket-cutout-left, .ticket-cutout-right {
       position: absolute;
       width: 22px;
@@ -140,22 +114,11 @@
       transform: translateY(-50%);
       z-index: 10;
     }
-    .ticket-cutout-left {
-      left: -11px;
-      box-shadow: inset -2px 0 4px rgba(15, 23, 42, 0.06);
-    }
-    .ticket-cutout-right {
-      right: -11px;
-      box-shadow: inset 2px 0 4px rgba(15, 23, 42, 0.06);
-    }
+    .ticket-cutout-left { left: -11px; box-shadow: inset -2px 0 4px rgba(15, 23, 42, 0.06); }
+    .ticket-cutout-right { right: -11px; box-shadow: inset 2px 0 4px rgba(15, 23, 42, 0.06); }
 
-    /* Minimum 44px Touch Target Enforcement */
-    .touch-target {
-      min-height: 44px;
-      min-width: 44px;
-    }
+    .touch-target { min-height: 44px; min-width: 44px; }
 
-    /* Print Styling for E-Ticket */
     @media print {
       body { background: #FFF; }
       #mobile-app-shell { box-shadow: none; max-width: 100%; }
@@ -170,36 +133,18 @@
 
     <!-- Compact Top App Bar (Always fixed on top) -->
     <header id="app-header" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 pt-safe pb-3 flex items-center justify-between no-print shadow-xs">
-      <!-- Dynamic Left Slot (Brand Logo OR Back Button) -->
-      <div id="header-left" class="flex items-center gap-2.5 min-w-0">
-        <!-- Populated by JS -->
-      </div>
-
-      <!-- Dynamic Right Slot (Location Pill / Notification / Help) -->
-      <div id="header-right" class="flex items-center gap-1.5 shrink-0">
-        <!-- Populated by JS -->
-      </div>
+      <div id="header-left" class="flex items-center gap-2.5 min-w-0"></div>
+      <div id="header-right" class="flex items-center gap-1.5 shrink-0"></div>
     </header>
 
-    <!-- Spacer to prevent content from slipping under fixed header -->
     <div class="h-[65px] no-print"></div>
 
-    <!-- Booking Progress Stepper (Shown during booking flow) -->
-    <div id="booking-stepper" class="hidden sticky top-[65px] z-40 bg-white border-b border-slate-200/80 px-4 py-2.5 no-print">
-      <!-- Populated by JS -->
-    </div>
+    <div id="booking-stepper" class="hidden sticky top-[65px] z-40 bg-white border-b border-slate-200/80 px-4 py-2.5 no-print"></div>
 
-    <!-- Main Scrollable Viewport -->
-    <main id="app-main" class="flex-1 w-full overflow-x-hidden">
-      <!-- Views dynamically rendered here -->
-    </main>
+    <main id="app-main" class="flex-1 w-full overflow-x-hidden"></main>
 
-    <!-- Sticky Bottom Primary CTA Bar (Shown during booking flow) -->
-    <div id="sticky-cta-bar" class="hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-30 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 pt-3 pb-safe shadow-[0_-6px_20px_rgba(15,23,42,0.06)] no-print">
-      <!-- Populated by JS -->
-    </div>
+    <div id="sticky-cta-bar" class="hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-30 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 pt-3 pb-safe shadow-[0_-6px_20px_rgba(15,23,42,0.06)] no-print"></div>
 
-    <!-- Fixed Mobile Bottom Navigation (4 Tabs) -->
     <nav id="bottom-nav" aria-label="Main Mobile Navigation" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-30 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-2 pt-1.5 pb-safe shadow-[0_-4px_16px_rgba(15,23,42,0.04)] no-print">
       <div class="grid grid-cols-4 items-center">
         <button type="button" onclick="navigateTab('home')" data-tab="home" class="nav-btn touch-target flex flex-col items-center justify-center py-1.5 rounded-xl transition-colors">
@@ -233,189 +178,163 @@
       </div>
     </nav>
 
-    <!-- Reusable Mobile Bottom Sheet Overlay -->
+    <!-- Bottom Sheet Modal -->
     <div id="bottom-sheet-overlay" class="fixed inset-0 z-50 hidden no-print" role="dialog" aria-modal="true">
       <div id="bottom-sheet-backdrop" onclick="closeBottomSheet()" class="sheet-backdrop fixed inset-0 bg-slate-900/50 backdrop-blur-[2px] opacity-0"></div>
       <div id="bottom-sheet-panel" class="sheet-panel fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl translate-y-full flex flex-col max-h-[86dvh]">
-        <!-- Drag Handle -->
         <div class="w-full pt-3 pb-1 flex justify-center shrink-0" onclick="closeBottomSheet()">
           <div class="w-10 h-1.5 rounded-full bg-slate-300"></div>
         </div>
-        <!-- Sheet Header -->
         <div class="px-5 py-2.5 border-b border-slate-100 flex items-center justify-between shrink-0">
           <h3 id="sheet-title" class="font-display font-bold text-base text-slate-900">Select Option</h3>
           <button type="button" onclick="closeBottomSheet()" aria-label="Close modal" class="touch-target flex items-center justify-center -mr-2 text-slate-400 hover:text-slate-700 rounded-full">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
-        <!-- Sheet Body -->
-        <div id="sheet-body" class="px-5 py-4 overflow-y-auto flex-1 pb-safe">
-          <!-- Populated dynamically -->
+        <div id="sheet-body" class="px-5 py-4 overflow-y-auto flex-1 pb-safe"></div>
+      </div>
+    </div>
+
+    <!-- Onboarding Guide Modal (Interactive Swipe Tour) -->
+    <div id="guide-modal" class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-950/60 backdrop-blur-sm no-print">
+      <div class="bg-white rounded-3xl w-full max-w-[400px] overflow-hidden shadow-2xl screen-enter">
+        <div class="p-6 text-center">
+          <div id="guide-icon-box" class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-4 shadow-sm">
+            <i data-lucide="compass" class="w-8 h-8"></i>
+          </div>
+          <span id="guide-step-tag" class="text-[11px] font-bold uppercase tracking-widest text-brand-700 bg-brand-50 px-3 py-1 rounded-full">Langkah 1 dari 3</span>
+          <h3 id="guide-title" class="font-display font-extrabold text-xl text-slate-900 mt-2">Cari Perjalanan</h3>
+          <p id="guide-desc" class="text-xs text-slate-600 mt-2 leading-relaxed">Pilih moda transportasi (Kereta, Pesawat, Shuttle, Kapal Cepat) dan tentukan rute perjalanan Anda dengan mudah.</p>
+        </div>
+
+        <div class="px-6 pb-6 flex items-center justify-between gap-3">
+          <button type="button" onclick="dismissGuide()" class="touch-target text-xs font-semibold text-slate-400 hover:text-slate-700 px-3 py-2">Lewati</button>
+          <div class="flex gap-1.5" id="guide-dots">
+            <span class="w-6 h-2 rounded-full bg-brand-700"></span>
+            <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+            <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+          </div>
+          <button type="button" onclick="nextGuideStep()" class="touch-target px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-semibold text-xs shadow-md shadow-brand-700/20">Lanjut</button>
         </div>
       </div>
     </div>
 
-    <!-- Custom Toast Notification (Replaces alert) -->
     <div id="toast-container" class="fixed top-16 left-1/2 -translate-x-1/2 w-[calc(100%-32px)] max-w-[448px] z-50 pointer-events-none flex flex-col gap-2 no-print"></div>
 
   </div>
 
-  <!-- Application Logic -->
+  <!-- Application Script -->
   <script>
-    // =========================================================================
-    // 1. MOCK TRAVEL DATA (INDONESIA INTERCITY & ISLAND ROUTES)
-    // =========================================================================
-    let CITIES = [{ id: null, code: 'ID', name: 'Indonesia', terminal: 'Destinasi perjalanan' }];
+    const CITIES = [
+      { code: 'JKT', name: 'Jakarta', terminal: 'Gambir / Soekarno-Hatta', province: 'DKI Jakarta', popular: true },
+      { code: 'BDG', name: 'Bandung', terminal: 'Bandung Station / Pasteur', province: 'West Java', popular: true },
+      { code: 'YIA', name: 'Yogyakarta', terminal: 'Tugu Station / YIA Airport', province: 'DI Yogyakarta', popular: true },
+      { code: 'DPS', name: 'Denpasar, Bali', terminal: 'Ngurah Rai / Mengwi', province: 'Bali', popular: true },
+      { code: 'SUB', name: 'Surabaya', terminal: 'Gubeng / Juanda', province: 'East Java', popular: true },
+      { code: 'SRG', name: 'Semarang', terminal: 'Tawang Bank Jateng', province: 'Central Java', popular: false },
+      { code: 'MLG', name: 'Malang', terminal: 'Malang Kotabaru', province: 'East Java', popular: false },
+      { code: 'LBJ', name: 'Labuan Bajo', terminal: 'Komodo Harbor / Airport', province: 'East Nusa Tenggara', popular: true }
+    ];
 
-    const CATEGORIES = [{ id: 'all', label: 'Paket Wisata', icon: 'map', badge: 'Explore' }];
+    const CATEGORIES = [
+      { id: 'train', label: 'Train', icon: 'train-front', badge: 'Fast' },
+      { id: 'flight', label: 'Flight', icon: 'plane', badge: 'Promo' },
+      { id: 'shuttle', label: 'Shuttle', icon: 'bus', badge: 'Door-to-Door' },
+      { id: 'ferry', label: 'Fast Boat', icon: 'ship', badge: 'Island' }
+    ];
 
-    let DESTINATIONS = [];
+    const DESTINATIONS = [
+      { id: 'dest-yia', city: 'Yogyakarta', code: 'YIA', tagline: 'Royal Heritage & Culinary', priceFrom: 285000, rating: '4.9', gradient: 'from-teal-700 via-emerald-700 to-slate-900', badge: 'Top Pick' },
+      { id: 'dest-dps', city: 'Denpasar, Bali', code: 'DPS', tagline: 'Uluwatu Cliffs & Beach Clubs', priceFrom: 690000, rating: '4.9', gradient: 'from-amber-600 via-orange-700 to-slate-900', badge: '20% OFF' },
+      { id: 'dest-bdg', city: 'Bandung', code: 'BDG', tagline: 'Highland Coffee & Pine Forests', priceFrom: 135000, rating: '4.8', gradient: 'from-cyan-700 via-teal-800 to-slate-900', badge: 'Weekend' },
+      { id: 'dest-lbj', city: 'Labuan Bajo', code: 'LBJ', tagline: 'Padar Island & Komodo Sailing', priceFrom: 1150000, rating: '5.0', gradient: 'from-indigo-700 via-sky-800 to-slate-900', badge: 'Trending' }
+    ];
 
-    const PROMOS = [];
+    const PROMOS = [
+      { code: 'ASRI25', title: 'Payday Escape 25% Off', desc: 'Save up to IDR 150.000 on Executive Trains & Flights', discountType: 'percent', value: 0.25, maxDiscount: 150000, bg: 'from-teal-700 to-emerald-800' },
+      { code: 'HEMAT50', title: 'Flat IDR 50.000 Off', desc: 'Valid for all intercity shuttles & morning departures', discountType: 'flat', value: 50000, maxDiscount: 50000, bg: 'from-amber-600 to-orange-700' }
+    ];
 
-    let SCHEDULE_TEMPLATES = { all: [] };
+    const SCHEDULE_TEMPLATES = {
+      train: [
+        { id: 'TR-101', operator: 'KAI Argo Parahyangan', code: 'KA-42', dep: '06:30', arr: '09:25', duration: '2h 55m', durationMins: 175, class: 'Executive', price: 250000, seats: 14, amenities: ['AC', 'Power Outlet', 'Reclining Seat', 'Cafe Car'] },
+        { id: 'TR-102', operator: 'Whoosh High-Speed', code: 'G-1018', dep: '08:15', arr: '09:02', duration: '0h 47m', durationMins: 47, class: 'First Class', price: 350000, seats: 6, amenities: ['350 km/h', 'Lounge Access', 'Snack Box', 'USB-C'] },
+        { id: 'TR-103', operator: 'KAI Taksaka Luxury', code: 'KA-68', dep: '10:40', arr: '16:55', duration: '6h 15m', durationMins: 375, class: 'Luxury Sleeper', price: 540000, seats: 4, amenities: ['Lie-Flat Pod', 'Hot Meal', 'IFE Screen', 'Blanket'] }
+      ],
+      flight: [
+        { id: 'FL-201', operator: 'Garuda Indonesia', code: 'GA-404', dep: '07:10', arr: '09:55', duration: '1h 45m', durationMins: 105, class: 'Economy Flex', price: 1180000, seats: 8, amenities: ['20kg Baggage', 'In-flight Meal', 'IFE'] },
+        { id: 'FL-202', operator: 'Citilink Green', code: 'QG-682', dep: '10:25', arr: '13:05', duration: '1h 40m', durationMins: 100, class: 'Economy', price: 795000, seats: 19, amenities: ['15kg Baggage', '7kg Cabin'] }
+      ],
+      shuttle: [
+        { id: 'SH-301', operator: 'DayTrans Executive', code: 'DT-09', dep: '06:00', arr: '09:15', duration: '3h 15m', durationMins: 195, class: 'Captain Seat', price: 135000, seats: 5, amenities: ['8-Seater HiAce', 'USB Charger', 'Mineral Water'] },
+        { id: 'SH-302', operator: 'Cititrans Premier', code: 'CT-14', dep: '09:30', arr: '12:40', duration: '3h 10m', durationMins: 190, class: 'Executive', price: 165000, seats: 7, amenities: ['Leg Rest', 'GPS Tracked', 'AC'] }
+      ],
+      ferry: [
+        { id: 'FR-401', operator: 'Eka Jaya Fast Boat', code: 'EJ-01', dep: '08:00', arr: '09:30', duration: '1h 30m', durationMins: 90, class: 'VIP Deck', price: 320000, seats: 15, amenities: ['Air Conditioned', 'Sun Deck', 'Life Jacket'] }
+      ]
+    };
 
-    // =========================================================================
-    // 2. APPLICATION STATE (SINGLE SOURCE OF TRUTH)
-    // =========================================================================
     const todayISO = new Date(Date.now() + 86400000).toISOString().split('T')[0];
 
     const state = {
-      activeTab: 'home', // 'home' | 'explore' | 'bookings' | 'account'
-      view: 'home',      // 'home' | 'explore' | 'bookings' | 'account' | 'results' | 'detail' | 'passenger' | 'summary' | 'payment' | 'confirmation' | 'eticket'
+      activeTab: 'home',
+      view: 'home',
       search: {
-        category: 'all',
-        origin: CITIES[0],      // Jakarta
-        destination: { id: null, code: '', name: 'Pilih destinasi', terminal: 'Pilih destinasi aktif' },
+        category: 'train',
+        origin: CITIES[0],
+        destination: CITIES[2],
         departDate: todayISO,
         returnDate: '',
         roundTrip: false,
         passengers: { adult: 1, child: 0 }
       },
       filter: {
-        sortBy: 'recommended', // 'recommended' | 'cheapest' | 'earliest' | 'fastest'
-        timeSlot: 'all',       // 'all' | 'morning' | 'afternoon' | 'evening'
+        sortBy: 'recommended',
+        timeSlot: 'all',
         seatClass: 'all'
       },
       selectedTrip: null,
-      selectedSeats: [],
+      selectedSeats: ['4A'],
       bookingForm: {
-        contactName: '',
-        contactEmail: '',
-        contactPhone: '',
-        passengers: [{ title: 'Mr.', fullName: '', idNumber: '' }],
+        contactName: 'Raka Pratama',
+        contactEmail: 'raka.pratama@asritravel.id',
+        contactPhone: '+62 812 8890 4412',
+        passengers: [{ title: 'Mr.', fullName: 'Raka Pratama', idNumber: '3174091205940002' }],
         voucherCode: '',
-        discountAmount: 0,
-        paymentMethod: 'poketo'
+        discountAmount: 0
       },
-      bookings: [],
+      bookings: [
+        {
+          bookingRef: 'ASRI-89421',
+          status: 'CONFIRMED',
+          bookedAt: '10 Nov 2026, 14:20',
+          category: 'train',
+          operator: 'Whoosh High-Speed',
+          code: 'G-1018',
+          origin: CITIES[0],
+          destination: CITIES[1],
+          departDate: '2026-11-18',
+          dep: '08:15',
+          arr: '09:02',
+          duration: '0h 47m',
+          seatClass: 'First Class',
+          seats: ['2A'],
+          passengers: [{ title: 'Mr.', fullName: 'Raka Pratama', idNumber: '3174091205940002' }],
+          totalPaid: 350000,
+          paymentMethod: 'Supabase Edge Function'
+        }
+      ],
       activeTicket: null,
       summaryExpanded: false,
-      travelPackages: [], travelSchedules: [], loadingCatalog: true, catalogError: '', processingPayment: false, bookingRequest: null, currentBooking: null
+      guideStep: 0
     };
 
+    const guideStepsData = [
+      { tag: 'Langkah 1 dari 3', title: 'Cari Perjalanan', desc: 'Pilih moda transportasi (Kereta, Pesawat, Shuttle, Kapal Cepat) dan tentukan rute perjalanan Anda dengan mudah.', icon: 'compass' },
+      { tag: 'Langkah 2 dari 3', title: 'Pilih & Booking Cepat', desc: 'Bandinkan jadwal, pilih kursi favorit Anda, dan masukkan data penumpang dengan proses yang sangat ringkas.', icon: 'ticket' },
+      { tag: 'Langkah 3 dari 3', title: 'E-Ticket QR Instan', desc: 'Bayar aman dengan integrasi Edge Function dan nikmati E-Ticket berstandar QR Code langsung di HP Anda.', icon: 'qr-code' }
+    ];
 
-    const SUPABASE_URL = 'https://gwifvnzbkqkdcithogwj.supabase.co';
-    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_czWvmOvvpVNWJOk7p4zONw_JxMKNRxG';
-    const EDGE_FUNCTIONS_URL = SUPABASE_URL + '/functions/v1/';
-
-    async function callTravelApi(path, options = {}) {
-      const headers = {
-        apikey: SUPABASE_PUBLISHABLE_KEY,
-        Authorization: 'Bearer ' + SUPABASE_PUBLISHABLE_KEY,
-        'Content-Type': 'application/json',
-        ...(options.headers || {})
-      };
-      const response = await fetch(EDGE_FUNCTIONS_URL + path, {
-        method: options.method || 'GET', headers,
-        ...(options.body ? { body: JSON.stringify(options.body) } : {})
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload.error) throw new Error(payload.detail || payload.error || 'backend_request_failed');
-      return payload;
-    }
-
-    function slugCode(value) {
-      return String(value || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8) || 'DEST';
-    }
-
-    async function loadTravelCatalog() {
-      state.loadingCatalog = true; state.catalogError = '';
-      try {
-        const today = new Date().toISOString().slice(0, 10);
-        const until = new Date(Date.now() + 365 * 86400000).toISOString().slice(0, 10);
-        const [dRes, pRes, sRes] = await Promise.all([
-          callTravelApi('asri-travel-api?resource=destinations'),
-          callTravelApi('asri-travel-api?resource=packages'),
-          callTravelApi('asri-travel-api?resource=schedules&from=' + today + '&to=' + until)
-        ]);
-        const destinations = dRes.data || [], packages = pRes.data || [];
-        const byId = new Map(packages.map(p => [p.id, p]));
-        const schedules = (sRes.data || []).map(row => {
-          const p = byId.get(row.package_id) || {};
-          const d = p.travel_destinations || destinations.find(x => x.id === p.destination_id) || {};
-          const days = Number(p.duration_days || 1), nights = Number(p.duration_nights || 0);
-          return {
-            id: row.schedule_id, packageId: row.package_id, title: p.title || row.package_title || 'Paket Wisata',
-            slug: p.slug || '', destinationId: p.destination_id || null, destinationName: d.name || 'Indonesia',
-            destinationCode: slugCode(d.slug || d.name), price: Number(row.price),
-            availableSeats: Number(row.available_seats), totalSeats: Number(row.total_seats),
-            startDate: row.start_date, endDate: row.end_date, departureTime: row.departure_time || '',
-            durationDays: days, durationNights: nights, duration: days + ' hari / ' + nights + ' malam',
-            description: p.description || p.summary || '',
-            inclusions: Array.isArray(p.inclusions) ? p.inclusions : [],
-            exclusions: Array.isArray(p.exclusions) ? p.exclusions : [],
-            itinerary: Array.isArray(p.itinerary) ? p.itinerary : []
-          };
-        });
-        CITIES = [{ id: null, code: 'ID', name: 'Indonesia', terminal: 'Destinasi perjalanan' }]
-          .concat(destinations.map(d => ({ id: d.id, code: slugCode(d.slug || d.name), name: d.name, terminal: [d.city,d.country].filter(Boolean).join(', ') || 'Indonesia' })));
-        DESTINATIONS = destinations.map(d => {
-          const prices = packages.filter(p => p.destination_id === d.id).map(p => Number(p.base_price)).filter(Number.isFinite);
-          return { id: d.id, code: slugCode(d.slug || d.name), city: d.name,
-            tagline: d.description || d.city || d.country || 'Jelajahi destinasi',
-            badge: 'Destinasi', rating: '', gradient: 'from-teal-700 via-emerald-700 to-slate-900',
-            priceFrom: prices.length ? Math.min(...prices) : null };
-        });
-        state.travelPackages = packages; state.travelSchedules = schedules; SCHEDULE_TEMPLATES = { all: schedules };
-        const selected = CITIES.find(c => c.id && c.id === state.search.destination?.id);
-        state.search.origin = CITIES[0];
-        state.search.destination = selected || CITIES.find(c => c.id) || { id: null, code: '', name: 'Pilih destinasi', terminal: 'Belum ada destinasi aktif' };
-      } catch (error) {
-        state.catalogError = error.message || 'catalog_load_failed';
-        console.error('ASRI catalog load failed', error);
-      } finally { state.loadingCatalog = false; renderApp(); }
-    }
-
-    async function restoreBookingFromRedirect() {
-      const params = new URLSearchParams(window.location.search), bookingCode = params.get('bookingCode');
-      if (!bookingCode) return;
-      try {
-        const access = JSON.parse(sessionStorage.getItem('asriTravelBookingAccess') || 'null');
-        if (!access || access.bookingCode !== bookingCode || !access.bookingToken) {
-          showToast('Sesi booking tidak ditemukan. Hubungi ASRI dengan kode ' + bookingCode, 'error'); return;
-        }
-        const result = await callTravelApi('asri-travel-api?resource=booking&bookingCode=' + encodeURIComponent(bookingCode), {
-          headers: { 'x-booking-token': access.bookingToken }
-        });
-        const remote = result.data || {};
-        const saved = JSON.parse(sessionStorage.getItem('asriTravelLastBooking') || 'null');
-        if (!saved) return;
-        saved.status = remote.booking?.status === 'confirmed' && remote.invoice?.status === 'paid'
-          ? 'CONFIRMED' : String(remote.invoice?.status || remote.booking?.status || 'PENDING').toUpperCase();
-        state.currentBooking = saved; state.bookings = [saved]; state.activeTicket = saved;
-        sessionStorage.setItem('asriTravelLastBooking', JSON.stringify(saved));
-        if (saved.status === 'CONFIRMED') navigateView('confirmation');
-        else { state.view = 'bookings'; state.activeTab = 'bookings'; renderApp(); showToast('Pembayaran belum terkonfirmasi. Status: ' + saved.status); }
-      } catch (error) {
-        console.error('ASRI booking status restore failed', error);
-        showToast('Status booking belum dapat diperiksa. Coba lagi beberapa saat.', 'error');
-      } finally { window.history.replaceState({}, document.title, window.location.pathname); }
-    }
-
-    // =========================================================================
-    // 3. UTILITY HELPERS
-    // =========================================================================
     function formatIDR(num) {
       return 'IDR ' + Math.round(num).toLocaleString('id-ID');
     }
@@ -455,200 +374,151 @@
     function syncPassengerFormArray() {
       const total = getTotalPassengers();
       while (state.bookingForm.passengers.length < total) {
-        const idx = state.bookingForm.passengers.length + 1;
-        state.bookingForm.passengers.push({
-          title: 'Mr.',
-          fullName: '',
-          idNumber: ''
-        });
+        state.bookingForm.passengers.push({ title: 'Mr.', fullName: '', idNumber: '' });
       }
       if (state.bookingForm.passengers.length > total) {
         state.bookingForm.passengers = state.bookingForm.passengers.slice(0, total);
       }
-      // Also align default seats
       const seatLetters = ['A', 'B', 'C', 'D'];
-      const needed = total;
       const updatedSeats = [];
-      for (let i = 0; i < needed; i++) {
+      for (let i = 0; i < total; i++) {
         updatedSeats.push(state.selectedSeats[i] || `${4 + Math.floor(i / 4)}${seatLetters[i % 4]}`);
       }
       state.selectedSeats = updatedSeats;
     }
 
-    // =========================================================================
-    // 4. NAVIGATION & SHELL CONTROLLER
-    // =========================================================================
-    function navigateTab(tab) {
-      state.activeTab = tab;
-      state.view = tab;
-      renderApp();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Guide Modal Controller
+    function updateGuideModal() {
+      const data = guideStepsData[state.guideStep];
+      document.getElementById('guide-step-tag').innerText = data.tag;
+      document.getElementById('guide-title').innerText = data.title;
+      document.getElementById('guide-desc').innerText = data.desc;
+      document.getElementById('guide-icon-box').innerHTML = `<i data-lucide="${data.icon}" class="w-8 h-8"></i>`;
+      
+      const dotsContainer = document.getElementById('guide-dots');
+      dotsContainer.innerHTML = guideStepsData.map((_, i) => `
+        <span class="${i === state.guideStep ? 'w-6 h-2 bg-brand-700' : 'w-2 h-2 bg-slate-200'} rounded-full transition-all duration-200"></span>
+      `).join('');
+      lucide.createIcons();
     }
 
-    function navigateView(view) {
-      state.view = view;
-      renderApp();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function handleBackNavigation() {
-      const flowBackMap = {
-        'results': 'home',
-        'detail': 'results',
-        'passenger': 'detail',
-        'summary': 'passenger',
-        'payment': 'summary',
-        'confirmation': 'bookings',
-        'eticket': 'bookings'
-      };
-      const target = flowBackMap[state.view] || 'home';
-      if (['home', 'explore', 'bookings', 'account'].includes(target)) {
-        state.activeTab = target;
+    function nextGuideStep() {
+      if (state.guideStep < guideStepsData.length - 1) {
+        state.guideStep++;
+        updateGuideModal();
+      } else {
+        dismissGuide();
       }
-      navigateView(target);
     }
 
+    function dismissGuide() {
+      document.getElementById('guide-modal').classList.add('hidden');
+      showToast('Selamat datang di ASRI Travel V2.1!', 'success');
+    }
+
+    // Navigation & Shell
     function updateShellChrome() {
       const headerLeft = document.getElementById('header-left');
       const headerRight = document.getElementById('header-right');
       const stepper = document.getElementById('booking-stepper');
+      const ctaBar = document.getElementById('sticky-cta-bar');
       const bottomNav = document.getElementById('bottom-nav');
-      const stickyCta = document.getElementById('sticky-cta-bar');
-      const bookingBadge = document.getElementById('booking-badge');
 
-      // Show badge if user has confirmed bookings
-      if (state.bookings.length > 0) {
-        bookingBadge.classList.remove('hidden');
-      }
+      // Update bottom nav indicators
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const tab = btn.getAttribute('data-tab');
+        const indicator = btn.querySelector('.nav-indicator');
+        const label = btn.querySelector('span');
+        if (tab === state.activeTab && ['home', 'explore', 'bookings', 'account'].includes(state.view)) {
+          indicator.className = 'nav-indicator w-10 h-7 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-0.5 transition-colors';
+          label.className = 'text-[11px] font-bold text-brand-800 tracking-tight';
+        } else {
+          indicator.className = 'nav-indicator w-10 h-7 rounded-full text-slate-400 flex items-center justify-center mb-0.5 transition-colors';
+          label.className = 'text-[11px] font-semibold text-slate-500 tracking-tight';
+        }
+      });
 
-      const isRootTab = ['home', 'explore', 'bookings', 'account'].includes(state.view);
+      // Booking badge
+      const badge = document.getElementById('booking-badge');
+      if (state.bookings.length > 0) badge.classList.remove('hidden');
+      else badge.classList.add('hidden');
 
-      // Bottom Nav visibility
-      if (isRootTab) {
-        bottomNav.classList.remove('hidden');
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-          const isActive = btn.dataset.tab === state.activeTab;
-          const indicator = btn.querySelector('.nav-indicator');
-          if (isActive) {
-            btn.classList.add('text-brand-700');
-            btn.classList.remove('text-slate-400');
-            indicator.classList.add('bg-brand-100/80', 'text-brand-700');
-          } else {
-            btn.classList.remove('text-brand-700');
-            btn.classList.add('text-slate-400');
-            indicator.classList.remove('bg-brand-100/80', 'text-brand-700');
-          }
-        });
-      } else {
-        bottomNav.classList.add('hidden');
-      }
-
-      // Header rendering
-      if (state.view === 'home') {
+      // Header Left Slot
+      if (['home', 'explore', 'bookings', 'account'].includes(state.view)) {
         headerLeft.innerHTML = `
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 flex items-center justify-center text-white shadow-sm shrink-0">
-            <i data-lucide="compass" class="w-5 h-5"></i>
+          <div class="w-8 h-8 rounded-xl bg-brand-700 text-white font-display font-extrabold text-sm flex items-center justify-center shadow-xs">A</div>
+          <div>
+            <h1 class="font-display font-extrabold text-sm text-slate-900 tracking-tight">ASRI TRAVEL</h1>
+            <p class="text-[10px] text-slate-500 font-medium">Mobile Exclusive V2.1</p>
           </div>
-          <div class="min-w-0">
-            <div class="flex items-center gap-1.5">
-              <span class="font-display font-extrabold text-base tracking-tight text-slate-900">ASRI TRAVEL</span>
-              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-brand-100 text-brand-800">V2.1</span>
+        `;
+      } else {
+        let backTarget = 'home';
+        if (state.view === 'detail') backTarget = 'results';
+        else if (state.view === 'passenger') backTarget = 'detail';
+        else if (state.view === 'summary') backTarget = 'passenger';
+        else if (state.view === 'eticket') backTarget = 'bookings';
+        else if (state.view === 'confirmation') backTarget = 'home';
+
+        headerLeft.innerHTML = `
+          <button type="button" onclick="goBackFromView('${backTarget}')" class="touch-target flex items-center gap-1.5 text-slate-800 font-semibold text-xs -ml-1">
+            <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
             </div>
-            <button type="button" onclick="openCitySheet('origin')" class="flex items-center gap-1 text-[11px] text-slate-500 font-medium truncate">
-              <i data-lucide="map-pin" class="w-3 h-3 text-brand-600 shrink-0"></i>
-              <span class="truncate">${state.search.origin.name}, ID</span>
-              <i data-lucide="chevron-down" class="w-3 h-3 shrink-0"></i>
-            </button>
-          </div>
-        `;
-        headerRight.innerHTML = `
-          <button type="button" onclick="showToast('All routes & promos updated for Nov 2026!')" aria-label="Notifications" class="touch-target relative flex items-center justify-center rounded-full bg-slate-100 text-slate-700 active:scale-95 transition">
-            <i data-lucide="bell" class="w-5 h-5"></i>
-            <span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-amber-500 ring-2 ring-white"></span>
-          </button>
-        `;
-      } else if (isRootTab) {
-        const titles = { explore: 'Explore Indonesia', bookings: 'My Bookings', account: 'My Account' };
-        headerLeft.innerHTML = `
-          <h1 class="font-display font-bold text-lg text-slate-900">${titles[state.view]}</h1>
-        `;
-        headerRight.innerHTML = `
-          <button type="button" onclick="openHelpSheet()" aria-label="Help Center" class="touch-target flex items-center justify-center rounded-full bg-slate-100 text-slate-700 active:scale-95 transition">
-            <i data-lucide="help-circle" class="w-5 h-5"></i>
-          </button>
-        `;
-      } else {
-        // Sub-pages with Back Button
-        const subTitles = {
-          results: `${state.search.origin.code} → ${state.search.destination.code}`,
-          detail: 'Trip Details',
-          passenger: 'Passenger Info',
-          summary: 'Booking Summary',
-          payment: 'Secure Payment',
-          confirmation: 'Booking Confirmed',
-          eticket: 'Mobile E-Ticket'
-        };
-        const subSubtitles = {
-          results: `${formatShortDate(state.search.departDate)} • ${getTotalPassengers()} Pax`,
-          detail: state.selectedTrip ? state.selectedTrip.operator : '',
-          passenger: 'Step 1 of 3',
-          summary: 'Step 2 of 3',
-          payment: 'Step 3 of 3',
-          confirmation: 'Ready to travel',
-          eticket: state.activeTicket ? state.activeTicket.bookingRef : ''
-        };
-        headerLeft.innerHTML = `
-          <button type="button" onclick="handleBackNavigation()" aria-label="Go back" class="touch-target -ml-2 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 active:scale-95 transition">
-            <i data-lucide="arrow-left" class="w-5 h-5"></i>
-          </button>
-          <div class="min-w-0">
-            <h1 class="font-display font-bold text-base text-slate-900 truncate leading-tight">${subTitles[state.view]}</h1>
-            ${subSubtitles[state.view] ? `<p class="text-[11px] text-slate-500 truncate">${subSubtitles[state.view]}</p>` : ''}
-          </div>
-        `;
-        headerRight.innerHTML = state.view === 'results' ? `
-          <button type="button" onclick="openSearchEditSheet()" class="touch-target px-3 py-1.5 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold flex items-center gap-1 active:scale-95 transition">
-            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
-            <span>Edit</span>
-          </button>
-        ` : `
-          <button type="button" onclick="openHelpSheet()" aria-label="Help" class="touch-target flex items-center justify-center rounded-full text-slate-600">
-            <i data-lucide="help-circle" class="w-5 h-5"></i>
+            <span>Back</span>
           </button>
         `;
       }
 
-      // Booking Progress Stepper (detail -> passenger -> summary -> payment)
-      const flowSteps = ['detail', 'passenger', 'summary', 'payment'];
-      const stepIdx = flowSteps.indexOf(state.view);
-      if (stepIdx !== -1) {
-        stepper.classList.remove('hidden');
-        const labels = ['Trip', 'Passenger', 'Review', 'Pay'];
-        stepper.innerHTML = `
-          <div class="flex items-center justify-between gap-1">
-            ${labels.map((label, idx) => {
-              const done = idx < stepIdx;
-              const current = idx === stepIdx;
-              return `
-                <div class="flex items-center gap-1.5 flex-1">
-                  <div class="w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center shrink-0 ${
-                    done ? 'bg-brand-600 text-white' : current ? 'bg-brand-700 text-white ring-4 ring-brand-100' : 'bg-slate-200 text-slate-500'
-                  }">
-                    ${done ? '✓' : idx + 1}
-                  </div>
-                  <span class="text-[11px] font-semibold truncate ${current ? 'text-brand-800' : done ? 'text-slate-700' : 'text-slate-400'}">${label}</span>
-                  ${idx < 3 ? `<div class="h-[2px] flex-1 rounded ${done ? 'bg-brand-600' : 'bg-slate-200'}"></div>` : ''}
-                </div>
-              `;
-            }).join('')}
+      // Header Right Slot
+      if (['home', 'explore'].includes(state.view)) {
+        headerRight.innerHTML = `
+          <div class="flex items-center gap-1 bg-brand-50 border border-brand-200/80 px-2.5 py-1 rounded-full">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-700"></i>
+            <span class="text-[11px] font-bold text-brand-800">${state.search.origin.code}</span>
           </div>
         `;
+      } else {
+        headerRight.innerHTML = `
+          <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 uppercase tracking-wider">${state.view}</span>
+        `;
+      }
+
+      // Stepper & CTA
+      const bookingFlowViews = ['results', 'detail', 'passenger', 'summary', 'confirmation'];
+      if (bookingFlowViews.includes(state.view)) {
+        stepper.classList.remove('hidden');
+        renderStepperContent(stepper);
+        bottomNav.classList.add('hidden');
       } else {
         stepper.classList.add('hidden');
+        bottomNav.classList.remove('hidden');
       }
 
-      // Sticky Bottom CTA Bar
-      renderStickyCta(stickyCta);
+      renderStickyCta(ctaBar);
+    }
+
+    function renderStepperContent(container) {
+      const steps = ['Search', 'Results', 'Detail', 'Passenger', 'Payment'];
+      let activeIdx = 0;
+      if (state.view === 'results') activeIdx = 1;
+      if (state.view === 'detail') activeIdx = 2;
+      if (state.view === 'passenger') activeIdx = 3;
+      if (state.view === 'summary' || state.view === 'confirmation') activeIdx = 4;
+
+      container.innerHTML = `
+        <div class="flex items-center justify-between text-[11px] font-semibold">
+          ${steps.map((st, i) => `
+            <div class="flex items-center gap-1.5 ${i <= activeIdx ? 'text-brand-700 font-bold' : 'text-slate-400'}">
+              <div class="w-5 h-5 rounded-full ${i <= activeIdx ? 'bg-brand-700 text-white' : 'bg-slate-200 text-slate-600'} flex items-center justify-center text-[10px]">
+                ${i + 1}
+              </div>
+              <span class="hidden sm:inline">${st}</span>
+            </div>
+            ${i < steps.length - 1 ? '<div class="w-4 h-0.5 bg-slate-200"></div>' : ''}
+          `).join('')}
+        </div>
+      `;
     }
 
     function renderStickyCta(container) {
@@ -687,20 +557,11 @@
               <p class="text-[11px] text-slate-500 font-medium">Amount Due</p>
               <p class="font-display font-extrabold text-base text-brand-800">${formatIDR(grandTotal)}</p>
             </div>
-            <button type="button" onclick="navigateView('payment')" class="touch-target px-6 py-3 rounded-2xl bg-brand-700 hover:bg-brand-800 active:scale-[0.98] text-white font-semibold text-sm shadow-md shadow-brand-700/20 flex items-center gap-2 transition">
-              <span>Select Payment</span>
-              <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <button type="button" onclick="processMockPayment()" class="touch-target px-6 py-3 rounded-2xl bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-slate-950 font-bold text-sm shadow-md shadow-amber-500/25 flex items-center gap-2 transition">
+              <i data-lucide="lock" class="w-4 h-4"></i>
+              <span>Pay Now via API</span>
             </button>
           </div>
-        `;
-      } else if (state.view === 'payment' && trip) {
-        const grandTotal = calculateGrandTotal();
-        container.classList.remove('hidden');
-        container.innerHTML = `
-          <button type="button" onclick="processMockPayment()" class="touch-target w-full py-3.5 rounded-2xl bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-slate-950 font-bold text-sm shadow-md shadow-amber-500/25 flex items-center justify-center gap-2 transition">
-            <i data-lucide="lock" class="w-4 h-4"></i>
-            <span>Pay Now • ${formatIDR(grandTotal)}</span>
-          </button>
         `;
       } else if (state.view === 'confirmation') {
         container.classList.remove('hidden');
@@ -716,312 +577,191 @@
     }
 
     function calculateGrandTotal() {
-      if (!state.selectedTrip) return 0;
-      const base = state.selectedTrip.price * getTotalPassengers();
-      const serviceFee = 12500;
-      return Math.max(0, base + serviceFee - state.bookingForm.discountAmount);
+      const trip = state.selectedTrip;
+      if (!trip) return 0;
+      const base = trip.price * getTotalPassengers();
+      const service = 12500;
+      const disc = state.bookingForm.discountAmount || 0;
+      return Math.max(0, base + service - disc);
     }
 
-    // =========================================================================
-    // 5. VIEW RENDERERS (100% MOBILE-NATIVE VIEWS)
-    // =========================================================================
+    function navigateTab(tab) {
+      state.activeTab = tab;
+      state.view = tab;
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navigateView(v) {
+      state.view = v;
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBackFromView(target) {
+      navigateView(target);
+    }
+
+    // View Renderers
     function renderApp() {
       updateShellChrome();
       const main = document.getElementById('app-main');
 
       switch (state.view) {
-        case 'home':
-          main.innerHTML = renderHomeView();
-          break;
-        case 'explore':
-          main.innerHTML = renderExploreView();
-          break;
-        case 'bookings':
-          main.innerHTML = renderBookingsView();
-          break;
-        case 'account':
-          main.innerHTML = renderAccountView();
-          break;
-        case 'results':
-          main.innerHTML = renderResultsView();
-          break;
-        case 'detail':
-          main.innerHTML = renderDetailView();
-          break;
-        case 'passenger':
-          main.innerHTML = renderPassengerView();
-          break;
-        case 'summary':
-          main.innerHTML = renderSummaryView();
-          break;
-        case 'payment':
-          main.innerHTML = renderPaymentView();
-          break;
-        case 'confirmation':
-          main.innerHTML = renderConfirmationView();
-          break;
-        case 'eticket':
-          main.innerHTML = renderEticketView();
-          break;
+        case 'home': main.innerHTML = renderHomeView(); break;
+        case 'explore': main.innerHTML = renderExploreView(); break;
+        case 'bookings': main.innerHTML = renderBookingsView(); break;
+        case 'account': main.innerHTML = renderAccountView(); break;
+        case 'results': main.innerHTML = renderResultsView(); break;
+        case 'detail': main.innerHTML = renderDetailView(); break;
+        case 'passenger': main.innerHTML = renderPassengerView(); break;
+        case 'summary': main.innerHTML = renderSummaryView(); break;
+        case 'confirmation': main.innerHTML = renderConfirmationView(); break;
+        case 'eticket': main.innerHTML = renderEticketView(); break;
       }
-
       lucide.createIcons();
     }
 
-    // -------------------------------------------------------------------------
     // VIEW 1: MOBILE HOMEPAGE
-    // -------------------------------------------------------------------------
     function renderHomeView() {
       const paxTotal = getTotalPassengers();
       return `
-        <div class="screen-enter bottom-nav-padding">
-          <!-- Compact Promotional Hero Banner -->
-          <div class="bg-gradient-to-br from-brand-700 via-brand-800 to-slate-900 px-4 pt-4 pb-12 text-white relative overflow-hidden">
-            <div class="absolute -right-8 -top-8 w-36 h-36 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
-            <div class="flex items-center justify-between gap-3">
-              <div class="max-w-[75%]">
-                <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-1.5">
-                  <i data-lucide="sparkles" class="w-3 h-3"></i> Nusantara Escape
-                </span>
-                <h2 class="font-display font-extrabold text-lg leading-snug">Where will your next journey take you?</h2>
-              </div>
-              <button type="button" onclick="applyPromoAndGo('ASRI25')" class="shrink-0 px-3 py-2 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 text-left active:scale-95 transition">
-                <p class="text-[10px] text-teal-200 font-medium">Promo Code</p>
-                <p class="font-display font-extrabold text-xs text-amber-300">ASRI25</p>
-              </button>
+        <div class="screen-enter bottom-nav-padding px-4 pt-4 flex flex-col gap-4">
+          <!-- Promotional Hero Banner -->
+          <div class="relative rounded-3xl bg-gradient-to-br from-brand-700 via-brand-800 to-slate-900 text-white p-5 overflow-hidden shadow-md">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10 blur-xl"></div>
+            <span class="inline-block text-[10px] font-bold uppercase tracking-widest bg-white/20 px-2.5 py-1 rounded-full mb-2">ASRI V2.1 Mobile</span>
+            <h2 class="font-display font-extrabold text-xl leading-tight">Jelajahi Indonesia Tanpa Batas</h2>
+            <p class="text-xs text-brand-100 mt-1 max-w-[240px]">Pesan Kereta, Pesawat, Shuttle & Kapal dalam satu genggaman.</p>
+            <button type="button" onclick="openGuideModalDirect()" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold bg-white text-slate-900 px-3 py-1.5 rounded-xl shadow-xs">
+              <i data-lucide="help-circle" class="w-3.5 h-3.5 text-brand-700"></i>
+              <span>Panduan Penggunaan</span>
+            </button>
+          </div>
+
+          <!-- Horizontal Transport Category Selector -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-display font-bold text-xs text-slate-500 uppercase tracking-wider">Moda Transportasi</h3>
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+              ${CATEGORIES.map(cat => `
+                <button type="button" onclick="setSearchCategory('${cat.id}')" class="touch-target p-2.5 rounded-2xl border ${state.search.category === cat.id ? 'bg-brand-50 border-brand-700 text-brand-800 shadow-xs' : 'bg-white border-slate-200 text-slate-700'} flex flex-col items-center justify-center gap-1 transition">
+                  <i data-lucide="${cat.icon}" class="w-5 h-5 ${state.search.category === cat.id ? 'text-brand-700' : 'text-slate-500'}"></i>
+                  <span class="text-[11px] font-semibold">${cat.label}</span>
+                </button>
+              `).join('')}
             </div>
           </div>
 
-          <!-- One-Handed Ergonomic Travel Search Widget -->
-          <div class="px-4 -mt-8 relative z-10">
-            <div class="bg-white rounded-3xl shadow-lg shadow-slate-900/5 border border-slate-200/80 p-4">
-
-              <!-- Horizontal Transport Category Selector -->
-              <div class="flex gap-2 overflow-x-auto no-scrollbar pb-3 mb-3 border-b border-slate-100">
-                ${CATEGORIES.map(cat => {
-                  const active = state.search.category === cat.id;
-                  return `
-                    <button type="button" onclick="selectCategory('${cat.id}')" class="touch-target shrink-0 px-3.5 py-2 rounded-2xl flex items-center gap-2 text-xs font-semibold transition active:scale-95 ${
-                      active
-                        ? 'bg-brand-700 text-white shadow-sm shadow-brand-700/25'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'
-                    }">
-                      <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
-                      <span>${cat.label}</span>
-                    </button>
-                  `;
-                }).join('')}
+          <!-- Large Travel Search Widget (Thumb Friendly) -->
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm flex flex-col gap-3">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+              <div onclick="openDestinationSheet('origin')" class="flex-1 cursor-pointer pr-2">
+                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Dari</span>
+                <p class="font-display font-extrabold text-sm text-slate-900 truncate">${state.search.origin.name}</p>
+                <p class="text-[10px] text-slate-500 truncate">${state.search.origin.code} - ${state.search.origin.terminal}</p>
               </div>
-
-              <!-- Origin & Destination Stack with Thumb-Friendly Swap FAB -->
-              <div class="relative flex flex-col gap-2">
-                <!-- From -->
-                <button type="button" onclick="openCitySheet('origin')" class="touch-target w-full text-left p-3 rounded-2xl bg-slate-50 border border-slate-200/80 active:bg-slate-100 transition flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="circle-dot" class="w-4 h-4"></i>
-                  </div>
-                  <div class="min-w-0 flex-1 pr-8">
-                    <p class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">From</p>
-                    <p class="font-display font-bold text-sm text-slate-900 truncate">${state.search.origin.name} (${state.search.origin.code})</p>
-                    <p class="text-[11px] text-slate-500 truncate">${state.search.origin.terminal}</p>
-                  </div>
-                </button>
-
-                <!-- Swap Cities Floating Button -->
-                <button type="button" onclick="swapOriginDestination()" aria-label="Swap departure and destination" class="touch-target absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md text-brand-700 flex items-center justify-center active:rotate-180 transition-transform duration-200">
-                  <i data-lucide="arrow-up-down" class="w-4 h-4"></i>
-                </button>
-
-                <!-- To -->
-                <button type="button" onclick="openCitySheet('destination')" class="touch-target w-full text-left p-3 rounded-2xl bg-slate-50 border border-slate-200/80 active:bg-slate-100 transition flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="map-pin" class="w-4 h-4"></i>
-                  </div>
-                  <div class="min-w-0 flex-1 pr-8">
-                    <p class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">To</p>
-                    <p class="font-display font-bold text-sm text-slate-900 truncate">${state.search.destination.name} (${state.search.destination.code})</p>
-                    <p class="text-[11px] text-slate-500 truncate">${state.search.destination.terminal}</p>
-                  </div>
-                </button>
-              </div>
-
-              <!-- Date & Passenger Row -->
-              <div class="grid grid-cols-2 gap-2 mt-2.5">
-                <!-- Departure Date -->
-                <button type="button" onclick="openDateSheet()" class="touch-target text-left p-3 rounded-2xl bg-slate-50 border border-slate-200/80 active:bg-slate-100 transition">
-                  <div class="flex items-center justify-between mb-0.5">
-                    <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Departure</span>
-                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-brand-600"></i>
-                  </div>
-                  <p class="font-semibold text-xs text-slate-900 truncate">${formatShortDate(state.search.departDate)}</p>
-                  <p class="text-[10px] text-slate-500 truncate">${state.search.roundTrip && state.search.returnDate ? 'Ret: ' + formatShortDate(state.search.returnDate) : 'One-way trip'}</p>
-                </button>
-
-                <!-- Passengers -->
-                <button type="button" onclick="openPassengerSheet()" class="touch-target text-left p-3 rounded-2xl bg-slate-50 border border-slate-200/80 active:bg-slate-100 transition">
-                  <div class="flex items-center justify-between mb-0.5">
-                    <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Passengers</span>
-                    <i data-lucide="users" class="w-3.5 h-3.5 text-brand-600"></i>
-                  </div>
-                  <p class="font-semibold text-xs text-slate-900 truncate">${paxTotal} ${paxTotal > 1 ? 'Passengers' : 'Passenger'}</p>
-                  <p class="text-[10px] text-slate-500 truncate">${state.search.passengers.adult} Adult${state.search.passengers.child > 0 ? ', ' + state.search.passengers.child + ' Child' : ''}</p>
-                </button>
-              </div>
-
-              <!-- Primary Search CTA -->
-              <button type="button" onclick="executeSearch()" class="touch-target w-full mt-3.5 py-3.5 rounded-2xl bg-brand-700 hover:bg-brand-800 active:scale-[0.98] text-white font-display font-bold text-sm shadow-md shadow-brand-700/20 flex items-center justify-center gap-2 transition">
-                <i data-lucide="search" class="w-4 h-4"></i>
-                <span>Search ${CATEGORIES.find(c => c.id === state.search.category).label}s</span>
+              <button type="button" onclick="swapOriginDestination()" class="touch-target w-9 h-9 rounded-full bg-brand-50 text-brand-700 border border-brand-200 flex items-center justify-center shrink-0 active:scale-90 transition">
+                <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
               </button>
+              <div onclick="openDestinationSheet('destination')" class="flex-1 cursor-pointer pl-2 text-right">
+                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Ke</span>
+                <p class="font-display font-extrabold text-sm text-slate-900 truncate">${state.search.destination.name}</p>
+                <p class="text-[10px] text-slate-500 truncate">${state.search.destination.code} - ${state.search.destination.terminal}</p>
+              </div>
             </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div onclick="openDateSheet()" class="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer">
+                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Tanggal Berangkat</span>
+                <p class="font-display font-bold text-xs text-slate-900 mt-0.5">${formatShortDate(state.search.departDate)}</p>
+              </div>
+              <div onclick="openPassengerSheet()" class="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer">
+                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Penumpang</span>
+                <p class="font-display font-bold text-xs text-slate-900 mt-0.5">${paxTotal} Penumpang</p>
+              </div>
+            </div>
+
+            <button type="button" onclick="executeSearch()" class="touch-target w-full py-3.5 rounded-2xl bg-brand-700 hover:bg-brand-800 active:scale-[0.98] text-white font-display font-bold text-sm shadow-md shadow-brand-700/25 flex items-center justify-center gap-2 transition">
+              <i data-lucide="search" class="w-4 h-4"></i>
+              <span>Cari Tiket Sekarang</span>
+            </button>
           </div>
 
           <!-- Horizontally Scrollable Destination Cards -->
-          <section class="mt-6">
-            <div class="px-4 flex items-center justify-between mb-3">
-              <div>
-                <h3 class="font-display font-bold text-base text-slate-900">Trending Destinations</h3>
-                <p class="text-xs text-slate-500">Tap a destination to auto-fill route</p>
-              </div>
-              <button type="button" onclick="navigateTab('explore')" class="touch-target px-2 text-xs font-semibold text-brand-700 flex items-center gap-0.5">
-                <span>See all</span>
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <h3 class="font-display font-bold text-xs text-slate-500 uppercase tracking-wider">Destinasi Populer</h3>
             </div>
-
-            <div class="flex gap-3 overflow-x-auto no-scrollbar px-4 pb-1">
-              ${DESTINATIONS.map(dest => `
-                <button type="button" onclick="quickSelectDestination('${dest.code}')" class="shrink-0 w-[168px] rounded-2xl bg-gradient-to-br ${dest.gradient} p-3.5 text-left text-white shadow-sm active:scale-95 transition flex flex-col justify-between h-44 relative overflow-hidden">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm">${dest.badge}</span>
-                    <span class="text-[11px] font-bold flex items-center gap-0.5 text-amber-300">★ ${dest.rating}</span>
+            <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+              ${DESTINATIONS.map(d => `
+                <div onclick="selectDestinationCard('${d.code}')" class="shrink-0 w-[170px] h-[210px] rounded-3xl bg-gradient-to-br ${d.gradient} p-4 flex flex-col justify-between text-white relative overflow-hidden cursor-pointer shadow-sm active:scale-95 transition">
+                  <div class="absolute inset-0 bg-black/15"></div>
+                  <div class="relative z-10 flex justify-between items-start">
+                    <span class="text-[10px] font-bold bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full">${d.badge}</span>
+                    <span class="text-xs font-bold flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>${d.rating}</span>
                   </div>
-                  <div>
-                    <p class="font-display font-extrabold text-base leading-tight">${dest.city}</p>
-                    <p class="text-[11px] text-white/80 line-clamp-1 mt-0.5">${dest.tagline}</p>
-                    <div class="mt-2 pt-2 border-t border-white/15">
-                      <p class="text-[10px] text-white/70">Starts from</p>
-                      <p class="font-display font-bold text-xs text-amber-300">${formatIDR(dest.priceFrom)}</p>
-                    </div>
+                  <div class="relative z-10">
+                    <h4 class="font-display font-bold text-base leading-tight">${d.city}</h4>
+                    <p class="text-[11px] text-slate-200 mt-0.5 line-clamp-1">${d.tagline}</p>
+                    <p class="text-xs font-extrabold text-amber-300 mt-2">Mulai ${formatIDR(d.priceFrom)}</p>
                   </div>
-                </button>
+                </div>
               `).join('')}
             </div>
-          </section>
-
-          <!-- Popular Routes -->
-          <section class="mt-6 px-4">
-            <h3 class="font-display font-bold text-base text-slate-900 mb-3">Popular Routes</h3>
-            <div class="flex flex-col gap-2.5">
-              ${[
-                { from: 'JKT', to: 'BDG', cat: 'train', time: '47m • Whoosh', price: 250000 },
-                { from: 'JKT', to: 'YIA', cat: 'train', time: '6h 15m • KAI Executive', price: 390000 },
-                { from: 'JKT', to: 'DPS', cat: 'flight', time: '1h 45m • Direct Flight', price: 795000 }
-              ].map(route => {
-                const orig = CITIES.find(c => c.code === route.from);
-                const dest = CITIES.find(c => c.code === route.to);
-                return `
-                  <button type="button" onclick="quickRouteSearch('${route.from}', '${route.to}', '${route.cat}')" class="touch-target w-full p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between active:bg-slate-50 transition text-left">
-                    <div class="flex items-center gap-3 min-w-0">
-                      <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center shrink-0">
-                        <i data-lucide="${route.cat === 'flight' ? 'plane' : 'train-front'}" class="w-5 h-5"></i>
-                      </div>
-                      <div class="min-w-0">
-                        <p class="font-display font-bold text-sm text-slate-900 truncate">${orig.name} → ${dest.name}</p>
-                        <p class="text-xs text-slate-500 truncate">${route.time}</p>
-                      </div>
-                    </div>
-                    <div class="text-right shrink-0 ml-2">
-                      <p class="text-[10px] text-slate-400">From</p>
-                      <p class="font-display font-bold text-xs text-brand-700">${formatIDR(route.price)}</p>
-                    </div>
-                  </button>
-                `;
-              }).join('')}
-            </div>
-          </section>
+          </div>
 
           <!-- Promotional Offers -->
-          <section class="mt-6">
-            <div class="px-4 mb-3">
-              <h3 class="font-display font-bold text-base text-slate-900">Exclusive Mobile Deals</h3>
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <h3 class="font-display font-bold text-xs text-slate-500 uppercase tracking-wider">Promo Spesial</h3>
             </div>
-            <div class="flex gap-3 overflow-x-auto no-scrollbar px-4 pb-2">
-              ${PROMOS.map(promo => `
-                <div class="shrink-0 w-[275px] rounded-2xl bg-gradient-to-r ${promo.bg} p-4 text-white flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              ${PROMOS.map(p => `
+                <div class="rounded-2xl bg-gradient-to-r ${p.bg} text-white p-4 flex items-center justify-between shadow-xs">
                   <div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/20">Voucher</span>
-                    <h4 class="font-display font-bold text-sm mt-2">${promo.title}</h4>
-                    <p class="text-xs text-white/85 mt-1 leading-relaxed">${promo.desc}</p>
+                    <span class="text-[10px] font-bold bg-white/20 px-2 py-0.5 rounded-full uppercase">${p.code}</span>
+                    <h4 class="font-display font-bold text-sm mt-1">${p.title}</h4>
+                    <p class="text-[11px] text-slate-100 mt-0.5">${p.desc}</p>
                   </div>
-                  <div class="mt-3 pt-2.5 border-t border-white/15 flex items-center justify-between">
-                    <span class="font-mono font-bold text-xs tracking-wider bg-black/25 px-2.5 py-1 rounded-lg">${promo.code}</span>
-                    <button type="button" onclick="copyText('${promo.code}', 'Promo code ${promo.code} copied!')" class="touch-target px-3 py-1.5 rounded-xl bg-white text-slate-900 font-bold text-xs active:scale-95 transition">
-                      Copy Code
-                    </button>
-                  </div>
+                  <button type="button" onclick="copyText('${p.code}', 'Kode promo ${p.code} disalin!')" class="touch-target px-3 py-2 rounded-xl bg-white text-slate-900 font-bold text-xs shrink-0 shadow-sm active:scale-95">Salin</button>
                 </div>
               `).join('')}
             </div>
-          </section>
-
-          <!-- Visitor Simple Guide Launcher (Interactive Swipe Popup) -->
-          <section class="mt-6 px-4 mb-8">
-            <button type="button" onclick="openVisitorGuideModal(0)" class="touch-target w-full bg-gradient-to-r from-brand-700 to-brand-900 text-white rounded-3xl p-4 shadow-sm flex items-center justify-between active:scale-[0.98] transition">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-amber-300">
-                  <i data-lucide="help-circle" class="w-5 h-5"></i>
-                </div>
-                <div class="text-left">
-                  <h3 class="font-display font-bold text-sm">Panduan Penggunaan (Visitor Guide)</h3>
-                  <p class="text-[11px] text-teal-100">Tap untuk melihat panduan interaktif 3 langkah</p>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-5 h-5 text-white/80"></i>
-            </button>
-          </section>
+          </div>
         </div>
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 2: EXPLORE TAB
-    // -------------------------------------------------------------------------
+    // VIEW 2: EXPLORE
     function renderExploreView() {
       return `
-        <div class="screen-enter bottom-nav-padding px-4 pt-4">
-          <div class="bg-brand-50 border border-brand-200/70 rounded-2xl p-3.5 mb-4 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center shrink-0">
-              <i data-lucide="sparkles" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <p class="font-display font-bold text-sm text-brand-900">Curated Archipelago Trips</p>
-              <p class="text-xs text-brand-700">One-tap instant route setup from ${state.search.origin.name}</p>
-            </div>
+        <div class="screen-enter bottom-nav-padding px-4 pt-4 flex flex-col gap-4">
+          <div>
+            <h2 class="font-display font-extrabold text-xl text-slate-900">Jelajah Nusantara</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Rekomendasi rute favorit wisatawan Indonesia.</p>
           </div>
 
-          <div class="flex flex-col gap-3.5">
-            ${DESTINATIONS.map(dest => `
-              <div class="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-xs">
-                <div class="h-32 bg-gradient-to-r ${dest.gradient} p-4 text-white flex flex-col justify-between">
-                  <div class="flex justify-between items-center">
-                    <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-sm">${dest.badge}</span>
-                    <span class="text-xs font-bold text-amber-300">★ ${dest.rating}</span>
+          <div class="flex flex-col gap-3">
+            ${DESTINATIONS.map(d => `
+              <div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-xs">
+                <div class="h-36 bg-gradient-to-br ${d.gradient} p-4 flex flex-col justify-between text-white relative">
+                  <div class="flex justify-between items-start">
+                    <span class="text-[10px] font-bold bg-white/20 px-2.5 py-1 rounded-full">${d.badge}</span>
+                    <span class="text-xs font-bold flex items-center gap-1"><i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>${d.rating}</span>
                   </div>
                   <div>
-                    <h3 class="font-display font-extrabold text-xl">${dest.city}</h3>
-                    <p class="text-xs text-white/85">${dest.tagline}</p>
+                    <h3 class="font-display font-extrabold text-lg">${d.city}</h3>
+                    <p class="text-xs text-slate-200">${d.tagline}</p>
                   </div>
                 </div>
                 <div class="p-4 flex items-center justify-between">
                   <div>
-                    <p class="text-[11px] text-slate-400">Starting ticket</p>
-                    <p class="font-display font-extrabold text-sm text-slate-900">${formatIDR(dest.priceFrom)}</p>
+                    <span class="text-[10px] text-slate-400 font-medium">Mulai dari</span>
+                    <p class="font-display font-extrabold text-base text-brand-800">${formatIDR(d.priceFrom)}</p>
                   </div>
-                  <button type="button" onclick="quickSelectDestination('${dest.code}', true)" class="touch-target px-4 py-2.5 rounded-xl bg-brand-700 text-white font-semibold text-xs flex items-center gap-1.5 active:scale-95 transition">
-                    <span>Find Tickets</span>
-                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                  </button>
+                  <button type="button" onclick="selectDestinationCard('${d.code}')" class="touch-target px-4 py-2.5 rounded-xl bg-brand-700 text-white font-semibold text-xs shadow-sm active:scale-95">Cari Rute</button>
                 </div>
               </div>
             `).join('')}
@@ -1030,52 +770,39 @@
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 3: MY BOOKING TAB
-    // -------------------------------------------------------------------------
+    // VIEW 3: MY BOOKING
     function renderBookingsView() {
       return `
-        <div class="screen-enter bottom-nav-padding px-4 pt-4">
+        <div class="screen-enter bottom-nav-padding px-4 pt-4 flex flex-col gap-3.5">
+          <div>
+            <h2 class="font-display font-extrabold text-xl text-slate-900">Pesanan Saya</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Riwayat tiket dan E-Ticket aktif Anda.</p>
+          </div>
+
           ${state.bookings.length === 0 ? `
             <div class="bg-white rounded-3xl border border-slate-200 p-8 text-center mt-6">
-              <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+              <div class="w-14 h-14 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
                 <i data-lucide="ticket" class="w-7 h-7"></i>
               </div>
-              <h3 class="font-display font-bold text-base text-slate-900">No Active Bookings</h3>
-              <p class="text-xs text-slate-500 mt-1 mb-5">Your confirmed e-tickets and boarding passes will appear right here.</p>
-              <button type="button" onclick="navigateTab('home')" class="touch-target px-5 py-3 rounded-2xl bg-brand-700 text-white font-semibold text-xs">
-                Book a Trip Now
-              </button>
+              <h3 class="font-display font-bold text-base text-slate-900">Belum Ada Pesanan</h3>
+              <p class="text-xs text-slate-500 mt-1">Pesan perjalanan pertama Anda sekarang.</p>
             </div>
           ` : `
-            <div class="flex flex-col gap-3.5">
-              ${state.bookings.map((bk, idx) => `
-                <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
+            <div class="flex flex-col gap-3">
+              ${state.bookings.map((bk, i) => `
+                <div onclick="viewBookingTicket(${i})" class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs cursor-pointer active:scale-[0.99] transition">
                   <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                    <div class="flex items-center gap-2">
-                      <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[10px] font-bold tracking-wide">${bk.status}</span>
-                      <span class="font-mono text-xs font-bold text-slate-600">${bk.bookingRef}</span>
-                    </div>
-                    <span class="text-[11px] text-slate-400">${formatShortDate(bk.departDate)}</span>
+                    <span class="text-xs font-mono font-bold text-brand-700">${bk.bookingRef}</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full">${bk.status}</span>
                   </div>
-
-                  <div class="py-3 flex items-center justify-between">
-                    <div>
-                      <p class="font-display font-extrabold text-base text-slate-900">${bk.origin.code} → ${bk.destination.code}</p>
-                      <p class="text-xs text-slate-500 mt-0.5">${bk.operator} • ${bk.dep} - ${bk.arr}</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-[10px] text-slate-400">Seat</p>
-                      <p class="font-display font-bold text-sm text-brand-700">${bk.seats.join(', ')}</p>
-                    </div>
+                  <div class="py-3 flex flex-col gap-1">
+                    <h3 class="font-display font-bold text-sm text-slate-900">${bk.origin.name} → ${bk.destination.name}</h3>
+                    <p class="text-xs text-slate-500">${bk.operator} (${bk.seatClass})</p>
+                    <p class="text-xs font-medium text-slate-600 mt-1">${formatShortDate(bk.departDate)} • ${bk.dep}</p>
                   </div>
-
-                  <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2">
-                    <p class="font-display font-bold text-xs text-slate-800">${formatIDR(bk.totalPaid)}</p>
-                    <button type="button" onclick="openTicketByIndex(${idx})" class="touch-target px-4 py-2 rounded-xl bg-brand-700 text-white font-semibold text-xs flex items-center gap-1.5 active:scale-95 transition">
-                      <i data-lucide="qr-code" class="w-3.5 h-3.5"></i>
-                      <span>Open E-Ticket</span>
-                    </button>
+                  <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span class="font-bold text-slate-900">${formatIDR(bk.totalPaid)}</span>
+                    <span class="font-semibold text-brand-700 flex items-center gap-1">Buka E-Ticket <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
                   </div>
                 </div>
               `).join('')}
@@ -1085,196 +812,90 @@
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 4: ACCOUNT TAB
-    // -------------------------------------------------------------------------
+    // VIEW 4: ACCOUNT
     function renderAccountView() {
       return `
-        <div class="screen-enter bottom-nav-padding px-4 pt-4">
-          <!-- Profile Card -->
-          <div class="bg-gradient-to-br from-brand-700 to-slate-900 rounded-3xl p-4 text-white flex items-center gap-3.5 shadow-sm">
-            <div class="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/25 flex items-center justify-center font-display font-extrabold text-lg shrink-0">
-              RP
-            </div>
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-2">
-                <h2 class="font-display font-bold text-base truncate">${state.bookingForm.contactName}</h2>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-400 text-slate-950">GOLD</span>
-              </div>
-              <p class="text-xs text-teal-100 truncate mt-0.5">${state.bookingForm.contactEmail}</p>
-              <p class="text-[11px] text-white/70 mt-0.5">2,450 AsriPoints Available</p>
+        <div class="screen-enter bottom-nav-padding px-4 pt-4 flex flex-col gap-4">
+          <div>
+            <h2 class="font-display font-extrabold text-xl text-slate-900">Profil Akun</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Kelola informasi pribadi dan preferensi perjalanan.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-4 flex items-center gap-3.5 shadow-xs">
+            <div class="w-14 h-14 rounded-2xl bg-brand-700 text-white font-display font-extrabold text-xl flex items-center justify-center shrink-0">RP</div>
+            <div>
+              <h3 class="font-display font-bold text-base text-slate-900">Raka Pratama</h3>
+              <p class="text-xs text-slate-500">raka.pratama@asritravel.id</p>
+              <p class="text-[11px] font-semibold text-brand-700 mt-1">+62 812 8890 4412</p>
             </div>
           </div>
 
-          <!-- Saved Passengers & Preferences -->
-          <div class="mt-4 bg-white rounded-3xl border border-slate-200/80 divide-y divide-slate-100">
-            <button type="button" onclick="showToast('Saved passenger profile synced!')" class="touch-target w-full p-4 flex items-center justify-between text-left active:bg-slate-50">
+          <div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-xs">
+            <button type="button" onclick="openGuideModalDirect()" class="touch-target w-full px-4 py-3.5 flex items-center justify-between text-left border-b border-slate-100">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center">
-                  <i data-lucide="id-card" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <p class="font-semibold text-sm text-slate-900">Saved Travelers</p>
-                  <p class="text-xs text-slate-500">1 verified ID ready for 1-tap checkout</p>
-                </div>
+                <div class="w-9 h-9 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center"><i data-lucide="help-circle" class="w-4 h-4"></i></div>
+                <span class="text-xs font-semibold text-slate-800">Panduan Penggunaan Aplikasi</span>
               </div>
               <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
             </button>
-
-            <button type="button" onclick="showToast('Instant QRIS & Virtual Account enabled')" class="touch-target w-full p-4 flex items-center justify-between text-left active:bg-slate-50">
+            <button type="button" onclick="showToast('ASRI Travel V2.1 Mobile Native', 'info')" class="touch-target w-full px-4 py-3.5 flex items-center justify-between text-left">
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
-                  <i data-lucide="wallet" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <p class="font-semibold text-sm text-slate-900">Payment Methods</p>
-                  <p class="text-xs text-slate-500">QRIS, GoPay, BCA Virtual Account</p>
-                </div>
+                <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center"><i data-lucide="info" class="w-4 h-4"></i></div>
+                <span class="text-xs font-semibold text-slate-800">Tentang ASRI Travel</span>
               </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-            </button>
-
-            <button type="button" onclick="openHelpSheet()" class="touch-target w-full p-4 flex items-center justify-between text-left active:bg-slate-50">
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center">
-                  <i data-lucide="headphones" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <p class="font-semibold text-sm text-slate-900">24/7 Mobile Concierge</p>
-                  <p class="text-xs text-slate-500">Reschedule, refund, or live chat</p>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+              <span class="text-xs font-mono text-slate-400">v2.1</span>
             </button>
           </div>
-
-          <p class="text-center text-[11px] text-slate-400 mt-6">ASRI TRAVEL V2.1 • Mobile Native Edition</p>
         </div>
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 5: MOBILE SEARCH RESULTS
-    // -------------------------------------------------------------------------
-    function getFilteredSchedules() {
-      let list = [...(SCHEDULE_TEMPLATES[state.search.category] || SCHEDULE_TEMPLATES.train)];
-
-      if (state.filter.timeSlot !== 'all') {
-        list = list.filter(item => {
-          const hour = parseInt(item.dep.split(':')[0], 10);
-          if (state.filter.timeSlot === 'morning') return hour >= 5 && hour < 12;
-          if (state.filter.timeSlot === 'afternoon') return hour >= 12 && hour < 18;
-          if (state.filter.timeSlot === 'evening') return hour >= 18 || hour < 5;
-          return true;
-        });
-      }
-
-      if (state.filter.sortBy === 'cheapest') {
-        list.sort((a, b) => a.price - b.price);
-      } else if (state.filter.sortBy === 'earliest') {
-        list.sort((a, b) => a.dep.localeCompare(b.dep));
-      } else if (state.filter.sortBy === 'fastest') {
-        list.sort((a, b) => a.durationMins - b.durationMins);
-      }
-
-      return list;
-    }
-
+    // VIEW 5: RESULTS
     function renderResultsView() {
-      const results = getFilteredSchedules();
-      const sortLabels = {
-        recommended: 'Recommended',
-        cheapest: 'Lowest Price',
-        earliest: 'Earliest Dep.',
-        fastest: 'Shortest Trip'
-      };
-
+      const list = SCHEDULE_TEMPLATES[state.search.category] || SCHEDULE_TEMPLATES.train;
       return `
-        <div class="screen-enter pb-10">
-          <!-- Horizontally Scrollable Compact Filter & Sort Toolbar -->
-          <div class="sticky top-[57px] z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-2.5">
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-              <button type="button" onclick="openSortSheet()" class="touch-target shrink-0 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition">
-                <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i>
-                <span>${sortLabels[state.filter.sortBy]}</span>
-              </button>
-
-              <button type="button" onclick="openFilterSheet()" class="touch-target shrink-0 px-3 py-1.5 rounded-full ${state.filter.timeSlot !== 'all' ? 'bg-brand-700 text-white' : 'bg-slate-100 text-slate-700'} text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition">
-                <i data-lucide="filter" class="w-3.5 h-3.5"></i>
-                <span>${state.filter.timeSlot === 'all' ? 'Time Filter' : state.filter.timeSlot.toUpperCase()}</span>
-              </button>
-
-              ${['all', 'morning', 'afternoon', 'evening'].map(slot => {
-                const label = slot === 'all' ? 'All Times' : slot === 'morning' ? '05:00–12:00' : slot === 'afternoon' ? '12:00–18:00' : '18:00+';
-                const active = state.filter.timeSlot === slot;
-                return `
-                  <button type="button" onclick="setTimeFilter('${slot}')" class="touch-target shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition ${
-                    active ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'
-                  }">
-                    ${label}
-                  </button>
-                `;
-              }).join('')}
+        <div class="screen-enter bottom-nav-padding px-4 pt-4 flex flex-col gap-3">
+          <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3 flex items-center justify-between shadow-xs">
+            <div>
+              <h3 class="font-display font-bold text-sm text-slate-900">${state.search.origin.name} → ${state.search.destination.name}</h3>
+              <p class="text-xs text-slate-500">${formatShortDate(state.search.departDate)} • ${getTotalPassengers()} Pax</p>
             </div>
+            <button type="button" onclick="navigateView('home')" class="touch-target px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs">Ubah</button>
           </div>
 
-          <!-- Vertically Stacked Result Cards -->
-          <div class="px-4 pt-3.5 flex flex-col gap-3">
-            <p class="text-xs text-slate-500 font-medium">${results.length} schedules available for ${state.search.origin.name} → ${state.search.destination.name}</p>
-
-            ${results.length === 0 ? `
-              <div class="bg-white rounded-3xl border border-slate-200 p-6 text-center mt-2">
-                <p class="font-display font-bold text-sm text-slate-900">No trips match this time window</p>
-                <p class="text-xs text-slate-500 mt-1 mb-4">Reset time filters to view all departures.</p>
-                <button type="button" onclick="setTimeFilter('all')" class="touch-target px-4 py-2.5 rounded-xl bg-brand-700 text-white text-xs font-semibold">Reset Filters</button>
-              </div>
-            ` : results.map(item => `
-              <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
-                <!-- Top Row: Operator & Class -->
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <div class="min-w-0">
-                    <h3 class="font-display font-bold text-sm text-slate-900 truncate">${item.operator}</h3>
-                    <p class="text-[11px] text-slate-400">${item.code} • <span class="text-brand-700 font-semibold">${item.class}</span></p>
+          <div class="flex flex-col gap-3 mt-1">
+            ${list.map(tr => `
+              <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-700 px-2.5 py-1 rounded-full">${tr.operator}</span>
+                    <span class="text-[10px] font-mono text-slate-400 ml-1.5">${tr.code}</span>
                   </div>
-                  <span class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full ${
-                    item.seats <= 6 ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'
-                  }">
-                    ${item.seats} seats left
-                  </span>
+                  <span class="text-xs font-semibold text-slate-600">${tr.class}</span>
                 </div>
 
-                <!-- Middle Row: Timeline -->
-                <div class="flex items-center justify-between gap-2 py-2.5 px-3 rounded-2xl bg-slate-50">
+                <div class="flex items-center justify-between">
                   <div>
-                    <p class="font-display font-extrabold text-base text-slate-900">${item.dep}</p>
-                    <p class="text-[11px] font-semibold text-slate-500">${state.search.origin.code}</p>
+                    <p class="font-display font-extrabold text-base text-slate-900">${tr.dep}</p>
+                    <p class="text-[10px] text-slate-500">${state.search.origin.code}</p>
                   </div>
-
-                  <div class="flex-1 flex flex-col items-center px-2">
-                    <span class="text-[10px] font-medium text-slate-400 mb-1">${item.duration}</span>
-                    <div class="w-full flex items-center gap-1">
-                      <span class="w-2 h-2 rounded-full border-2 border-brand-600 bg-white"></span>
-                      <div class="h-[1.5px] flex-1 bg-slate-300"></div>
-                      <span class="w-2 h-2 rounded-full bg-brand-600"></span>
-                    </div>
-                    <span class="text-[10px] text-brand-700 font-semibold mt-1">Direct</span>
+                  <div class="flex flex-col items-center">
+                    <span class="text-[10px] text-slate-400">${tr.duration}</span>
+                    <div class="w-16 h-0.5 bg-slate-200 my-1 relative"></div>
+                    <span class="text-[10px] text-emerald-700 font-semibold">${tr.seats} kursi</span>
                   </div>
-
                   <div class="text-right">
-                    <p class="font-display font-extrabold text-base text-slate-900">${item.arr}</p>
-                    <p class="text-[11px] font-semibold text-slate-500">${state.search.destination.code}</p>
+                    <p class="font-display font-extrabold text-base text-slate-900">${tr.arr}</p>
+                    <p class="text-[10px] text-slate-500">${state.search.destination.code}</p>
                   </div>
                 </div>
 
-                <!-- Bottom Row: Price & Select CTA -->
-                <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between gap-3">
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <p class="text-[10px] text-slate-400">Price / pax</p>
-                    <p class="font-display font-extrabold text-base text-brand-800">${formatIDR(item.price)}</p>
+                    <span class="text-[10px] text-slate-400">Harga per pax</span>
+                    <p class="font-display font-extrabold text-base text-brand-800">${formatIDR(tr.price)}</p>
                   </div>
-                  <button type="button" onclick="selectTrip('${item.id}')" class="touch-target px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 active:scale-95 text-white font-semibold text-xs shadow-sm transition">
-                    Select
-                  </button>
+                  <button type="button" onclick="selectTripResult('${tr.id}')" class="touch-target px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-semibold text-xs shadow-sm active:scale-95">Pilih</button>
                 </div>
               </div>
             `).join('')}
@@ -1283,143 +904,74 @@
       `;
     }
 
-    // -------------------------------------------------------------------------
     // VIEW 6: TRIP DETAIL & SEAT SELECTION
-    // -------------------------------------------------------------------------
     function renderDetailView() {
       const trip = state.selectedTrip;
       if (!trip) return '';
-      const paxCount = getTotalPassengers();
-      const seatGrid = ['1A', '1B', '1C', '1D', '2A', '2B', '2C', '2D', '3A', '3B', '3C', '3D', '4A', '4B', '4C', '4D'];
-      const occupied = ['1B', '2C', '3A'];
-
+      const seatLetters = ['A', 'B', 'C', 'D'];
       return `
         <div class="screen-enter sticky-cta-padding px-4 pt-4 flex flex-col gap-3.5">
-          <!-- Operator & Route Card -->
           <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-800 text-xs font-bold">${trip.class}</span>
-              <span class="text-xs font-semibold text-slate-500">${formatShortDate(state.search.departDate)}</span>
-            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700">${trip.operator} (${trip.code})</span>
+            <h2 class="font-display font-extrabold text-lg text-slate-900 mt-1">${state.search.origin.name} → ${state.search.destination.name}</h2>
+            <p class="text-xs text-slate-500 mt-0.5">${formatShortDate(state.search.departDate)} • ${trip.dep} - ${trip.arr}</p>
 
-            <h2 class="font-display font-extrabold text-base text-slate-900">${trip.operator} (${trip.code})</h2>
-
-            <div class="mt-4 flex flex-col gap-3 relative pl-4 border-l-2 border-brand-600 ml-1.5">
-              <div>
-                <p class="font-display font-bold text-sm text-slate-900">${trip.dep} • ${state.search.origin.name} (${state.search.origin.code})</p>
-                <p class="text-xs text-slate-500">${state.search.origin.terminal}</p>
-              </div>
-              <div class="py-1">
-                <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600">Duration: ${trip.duration} • Direct</span>
-              </div>
-              <div>
-                <p class="font-display font-bold text-sm text-slate-900">${trip.arr} • ${state.search.destination.name} (${state.search.destination.code})</p>
-                <p class="text-xs text-slate-500">${state.search.destination.terminal}</p>
-              </div>
-            </div>
-
-            <!-- Amenities Pills -->
-            <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-1.5">
-              ${trip.amenities.map(am => `
-                <span class="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">✓ ${am}</span>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              ${trip.amenities.map(a => `
+                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-1 rounded-xl font-medium">${a}</span>
               `).join('')}
             </div>
           </div>
 
-          <!-- Interactive Mobile Seat Picker -->
           <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
-            <div class="flex items-center justify-between mb-3">
-              <div>
-                <h3 class="font-display font-bold text-sm text-slate-900">Select ${paxCount} Seat${paxCount > 1 ? 's' : ''}</h3>
-                <p class="text-xs text-slate-500">Selected: <span class="font-bold text-brand-700">${state.selectedSeats.join(', ')}</span></p>
-              </div>
-              <div class="flex items-center gap-2 text-[10px] font-semibold">
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-brand-700 inline-block"></span>You</span>
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-slate-200 inline-block"></span>Taken</span>
-              </div>
-            </div>
-
-            <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200/70">
-              <div class="text-center text-[10px] font-bold uppercase tracking-widest text-slate-400 pb-2.5 mb-2.5 border-b border-slate-200">Front of Cabin</div>
-              <div class="grid grid-cols-4 gap-2">
-                ${seatGrid.map(seat => {
-                  const isTaken = occupied.includes(seat);
-                  const isSelected = state.selectedSeats.includes(seat);
-                  return `
-                    <button type="button" ${isTaken ? 'disabled' : ''} onclick="toggleSeatSelection('${seat}')" class="touch-target rounded-xl font-display font-bold text-xs flex items-center justify-center transition ${
-                      isTaken
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                        : isSelected
-                          ? 'bg-brand-700 text-white shadow-sm ring-2 ring-brand-300'
-                          : 'bg-white border border-slate-200 text-slate-700 active:scale-95'
-                    }">
-                      ${seat}
-                    </button>
-                  `;
-                }).join('')}
-              </div>
+            <h3 class="font-display font-bold text-sm text-slate-900 mb-2">Pilih Kursi (${state.selectedSeats.join(', ')})</h3>
+            <div class="grid grid-cols-4 gap-2">
+              ${Array.from({length: 16}).map((_, i) => {
+                const row = Math.floor(i / 4) + 1;
+                const seatName = `${row}${seatLetters[i % 4]}`;
+                const isSelected = state.selectedSeats.includes(seatName);
+                return `
+                  <button type="button" onclick="toggleSeatSelection('${seatName}')" class="touch-target py-2.5 rounded-xl font-mono text-xs font-bold border transition ${isSelected ? 'bg-brand-700 text-white border-brand-700 shadow-xs' : 'bg-slate-50 border-slate-200 text-slate-700'}">
+                    ${seatName}
+                  </button>
+                `;
+              }).join('')}
             </div>
           </div>
         </div>
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 7: PASSENGER INFORMATION (KEYBOARD-AWARE SINGLE COLUMN)
-    // -------------------------------------------------------------------------
+    // VIEW 7: PASSENGER INFORMATION
     function renderPassengerView() {
+      syncPassengerFormArray();
       return `
-        <div class="screen-enter sticky-cta-padding px-4 pt-4 flex flex-col gap-4">
-          <!-- Contact Details Card -->
+        <div class="screen-enter sticky-cta-padding px-4 pt-4 flex flex-col gap-3.5">
           <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
-            <h3 class="font-display font-bold text-sm text-slate-900 mb-1">Contact Details</h3>
-            <p class="text-xs text-slate-500 mb-3.5">E-ticket & instant updates will be sent here</p>
-
-            <div class="flex flex-col gap-3">
+            <h3 class="font-display font-bold text-sm text-slate-900 mb-2">Kontak Pemesan</h3>
+            <div class="flex flex-col gap-2.5 text-xs">
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
-                <input type="text" value="${state.bookingForm.contactName}" oninput="state.bookingForm.contactName = this.value" placeholder="e.g. Raka Pratama" class="touch-target w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brand-600 focus:bg-white" />
+                <label class="block text-slate-500 mb-1">Nama Lengkap</label>
+                <input type="text" value="${state.bookingForm.contactName}" onchange="state.bookingForm.contactName=this.value" class="touch-target w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900" />
               </div>
-
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Mobile WhatsApp Number</label>
-                <input type="tel" inputmode="tel" value="${state.bookingForm.contactPhone}" oninput="state.bookingForm.contactPhone = this.value" placeholder="+62 812..." class="touch-target w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brand-600 focus:bg-white" />
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
-                <input type="email" inputmode="email" value="${state.bookingForm.contactEmail}" oninput="state.bookingForm.contactEmail = this.value" placeholder="name@email.com" class="touch-target w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brand-600 focus:bg-white" />
+                <label class="block text-slate-500 mb-1">Email</label>
+                <input type="email" value="${state.bookingForm.contactEmail}" onchange="state.bookingForm.contactEmail=this.value" class="touch-target w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900" />
               </div>
             </div>
           </div>
 
-          <!-- Individual Passenger Cards -->
-          ${state.bookingForm.passengers.map((pax, idx) => `
+          ${state.bookingForm.passengers.map((p, idx) => `
             <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="font-display font-bold text-sm text-slate-900">Passenger ${idx + 1}</h3>
-                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700">Seat ${state.selectedSeats[idx] || 'Auto'}</span>
-              </div>
-
-              <div class="flex flex-col gap-3">
-                <div class="grid grid-cols-3 gap-2">
-                  <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Title</label>
-                    <select onchange="state.bookingForm.passengers[${idx}].title = this.value" class="touch-target w-full px-3 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brand-600">
-                      <option value="Mr." ${pax.title === 'Mr.' ? 'selected' : ''}>Mr.</option>
-                      <option value="Mrs." ${pax.title === 'Mrs.' ? 'selected' : ''}>Mrs.</option>
-                      <option value="Ms." ${pax.title === 'Ms.' ? 'selected' : ''}>Ms.</option>
-                    </select>
-                  </div>
-                  <div class="col-span-2">
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">ID / Passport Name</label>
-                    <input type="text" value="${pax.fullName}" oninput="state.bookingForm.passengers[${idx}].fullName = this.value" placeholder="As shown on KTP/Passport" class="touch-target w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brand-600 focus:bg-white" />
-                  </div>
-                </div>
-
+              <h3 class="font-display font-bold text-sm text-slate-900 mb-2">Penumpang ${idx + 1} (Kursi: ${state.selectedSeats[idx] || 'A1'})</h3>
+              <div class="flex flex-col gap-2.5 text-xs">
                 <div>
-                  <label class="block text-xs font-semibold text-slate-700 mb-1">NIK / Passport Number</label>
-                  <input type="text" inputmode="numeric" value="${pax.idNumber}" oninput="state.bookingForm.passengers[${idx}].idNumber = this.value" placeholder="16-digit NIK or Passport ID" class="touch-target w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brand-600 focus:bg-white" />
+                  <label class="block text-slate-500 mb-1">Nama Sesuai KTP/Paspor</label>
+                  <input type="text" value="${p.fullName}" onchange="state.bookingForm.passengers[${idx}].fullName=this.value" placeholder="Contoh: Raka Pratama" class="touch-target w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900" />
+                </div>
+                <div>
+                  <label class="block text-slate-500 mb-1">Nomor Identitas (KTP)</label>
+                  <input type="text" value="${p.idNumber}" onchange="state.bookingForm.passengers[${idx}].idNumber=this.value" placeholder="31740xxxxxxxxxxx" class="touch-target w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900" />
                 </div>
               </div>
             </div>
@@ -1428,9 +980,7 @@
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 8: BOOKING SUMMARY & VOUCHER CHECKOUT
-    // -------------------------------------------------------------------------
+    // VIEW 8: SUMMARY & EDGE FUNCTION CHECKOUT
     function renderSummaryView() {
       const trip = state.selectedTrip;
       if (!trip) return '';
@@ -1441,11 +991,10 @@
 
       return `
         <div class="screen-enter sticky-cta-padding px-4 pt-4 flex flex-col gap-3.5">
-          <!-- Expandable Order Summary Card -->
           <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
             <button type="button" onclick="toggleSummaryDetails()" class="touch-target w-full flex items-center justify-between text-left">
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700">Trip Summary</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-brand-700">Ringkasan Perjalanan</span>
                 <h3 class="font-display font-extrabold text-base text-slate-900">${state.search.origin.name} → ${state.search.destination.name}</h3>
                 <p class="text-xs text-slate-500">${formatShortDate(state.search.departDate)} • ${trip.dep} • ${paxCount} Pax</p>
               </div>
@@ -1461,138 +1010,83 @@
                   <span class="font-semibold text-slate-900">${trip.operator} (${trip.class})</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>Assigned Seats</span>
+                  <span>Kursi</span>
                   <span class="font-semibold text-brand-700">${state.selectedSeats.join(', ')}</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Passengers</span>
-                  <span class="font-semibold text-slate-900 text-right">${state.bookingForm.passengers.map(p => `${p.title} ${p.fullName}`).join(', ')}</span>
                 </div>
               </div>
             ` : ''}
           </div>
 
-          <!-- Promo Voucher Input -->
           <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs">
-            <label class="block font-display font-bold text-sm text-slate-900 mb-2">Have a Promo Voucher?</label>
+            <label class="block font-display font-bold text-sm text-slate-900 mb-2">Kode Promo</label>
             <div class="flex gap-2">
-              <input type="text" id="voucher-input" value="${state.bookingForm.voucherCode}" placeholder="Try ASRI25 or HEMAT50" class="touch-target flex-1 px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm uppercase font-mono text-slate-900 focus:outline-none focus:border-brand-600" />
-              <button type="button" onclick="applyVoucherCode()" class="touch-target px-4 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-xs active:scale-95 transition">
-                Apply
-              </button>
+              <input type="text" id="voucher-input" value="${state.bookingForm.voucherCode}" placeholder="ASRI25 / HEMAT50" class="touch-target flex-1 px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm uppercase font-mono text-slate-900" />
+              <button type="button" onclick="applyVoucherCode()" class="touch-target px-4 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-xs">Pakai</button>
             </div>
-            <div class="flex gap-2 mt-2.5">
-              <button type="button" onclick="quickFillVoucher('ASRI25')" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 border border-brand-200">Tap: ASRI25</button>
-              <button type="button" onclick="quickFillVoucher('HEMAT50')" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">Tap: HEMAT50</button>
+            <div class="flex gap-2 mt-2">
+              <button type="button" onclick="quickFillVoucher('ASRI25')" class="text-[11px] font-semibold px-2 py-1 rounded-lg bg-brand-50 text-brand-700">ASRI25</button>
+              <button type="button" onclick="quickFillVoucher('HEMAT50')" class="text-[11px] font-semibold px-2 py-1 rounded-lg bg-amber-50 text-amber-700">HEMAT50</button>
             </div>
           </div>
 
-          <!-- Price Breakdown -->
           <div class="bg-white rounded-3xl border border-slate-200/90 p-4 shadow-xs flex flex-col gap-2.5 text-xs">
-            <h3 class="font-display font-bold text-sm text-slate-900 mb-0.5">Price Breakdown</h3>
+            <h3 class="font-display font-bold text-sm text-slate-900 mb-0.5">Rincian Harga</h3>
             <div class="flex justify-between text-slate-600">
-              <span>Ticket Fare (${paxCount}x ${formatIDR(trip.price)})</span>
+              <span>Tiket (${paxCount}x ${formatIDR(trip.price)})</span>
               <span class="font-semibold text-slate-900">${formatIDR(baseFare)}</span>
             </div>
             <div class="flex justify-between text-slate-600">
-              <span>Platform & Insurance Fee</span>
+              <span>Biaya Layanan & Asuransi</span>
               <span class="font-semibold text-slate-900">${formatIDR(serviceFee)}</span>
             </div>
             ${state.bookingForm.discountAmount > 0 ? `
               <div class="flex justify-between text-emerald-700 font-semibold">
-                <span>Promo Discount (${state.bookingForm.voucherCode})</span>
+                <span>Diskon Promo</span>
                 <span>- ${formatIDR(state.bookingForm.discountAmount)}</span>
               </div>
             ` : ''}
             <div class="pt-2.5 border-t border-slate-100 flex justify-between items-center">
-              <span class="font-display font-bold text-sm text-slate-900">Total Payment</span>
+              <span class="font-display font-bold text-sm text-slate-900">Total Pembayaran</span>
               <span class="font-display font-extrabold text-base text-brand-800">${formatIDR(total)}</span>
             </div>
           </div>
-        </div>
-      `;
-    }
 
-    // -------------------------------------------------------------------------
-    // VIEW 9: MOCK PAYMENT SELECTION
-    // -------------------------------------------------------------------------
-    function renderPaymentView() {
-      const methods = [
-        { id: 'qris', name: 'QRIS Instant', desc: 'Scan with GoPay, OVO, Dana, ShopeePay, or Mobile Banking', badge: 'Instant' },
-        { id: 'bca_va', name: 'BCA Virtual Account', desc: 'Automatic verification via m-BCA or KlikBCA', badge: 'Popular' },
-        { id: 'mandiri_va', name: 'Mandiri Virtual Account', desc: 'Instant confirmation via Livin’ by Mandiri', badge: '' },
-        { id: 'card', name: 'Credit / Debit Card', desc: 'Visa, Mastercard, JCB with 3D Secure', badge: '' }
-      ];
-
-      return `
-        <div class="screen-enter sticky-cta-padding px-4 pt-4 flex flex-col gap-3.5">
-          <div class="bg-brand-900 text-white rounded-3xl p-4 flex items-center justify-between">
+          <div class="bg-brand-50 border border-brand-200/70 rounded-2xl p-3.5 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-brand-700 text-white flex items-center justify-center shrink-0">
+              <i data-lucide="shield-check" class="w-4 h-4"></i>
+            </div>
             <div>
-              <p class="text-xs text-teal-200">Total Amount Due</p>
-              <p class="font-display font-extrabold text-xl mt-0.5">${formatIDR(calculateGrandTotal())}</p>
+              <p class="font-display font-bold text-xs text-brand-900">Edge Function Payment Gateway</p>
+              <p class="text-[11px] text-brand-700">Invoice dibuat aman via Supabase Edge Function.</p>
             </div>
-            <div class="px-3 py-1.5 rounded-xl bg-white/15 text-xs font-semibold flex items-center gap-1.5">
-              <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-300"></i>
-              <span>14:59</span>
-            </div>
-          </div>
-
-          <h3 class="font-display font-bold text-sm text-slate-900 mt-1">Select Payment Method</h3>
-
-          <div class="flex flex-col gap-2.5">
-            ${methods.map(m => {
-              const selected = state.bookingForm.paymentMethod === m.id;
-              return `
-                <button type="button" onclick="selectPaymentMethod('${m.id}')" class="touch-target w-full p-4 rounded-2xl bg-white border-2 text-left transition flex items-center justify-between gap-3 ${
-                  selected ? 'border-brand-700 bg-brand-50/30' : 'border-slate-200/80'
-                }">
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-2">
-                      <span class="font-display font-bold text-sm text-slate-900">${m.name}</span>
-                      ${m.badge ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">${m.badge}</span>` : ''}
-                    </div>
-                    <p class="text-xs text-slate-500 mt-0.5 leading-snug">${m.desc}</p>
-                  </div>
-                  <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                    selected ? 'border-brand-700' : 'border-slate-300'
-                  }">
-                    ${selected ? '<div class="w-2.5 h-2.5 rounded-full bg-brand-700"></div>' : ''}
-                  </div>
-                </button>
-              `;
-            }).join('')}
           </div>
         </div>
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 10: BOOKING CONFIRMATION
-    // -------------------------------------------------------------------------
+    // VIEW 9: CONFIRMATION
     function renderConfirmationView() {
       const bk = state.activeTicket;
       if (!bk) return '';
-
       return `
         <div class="screen-enter sticky-cta-padding px-4 pt-6 text-center">
           <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-3 shadow-sm">
             <i data-lucide="check-circle-2" class="w-9 h-9"></i>
           </div>
-          <h2 class="font-display font-extrabold text-xl text-slate-900">Payment Successful!</h2>
-          <p class="text-xs text-slate-500 mt-1 max-w-[280px] mx-auto">Your seat is locked and your official mobile boarding pass is ready.</p>
+          <h2 class="font-display font-extrabold text-xl text-slate-900">Pembayaran Berhasil!</h2>
+          <p class="text-xs text-slate-500 mt-1 max-w-[280px] mx-auto">Kursi Anda telah terkunci dan E-Ticket siap digunakan.</p>
 
           <div class="mt-5 bg-white rounded-3xl border border-slate-200 p-4 text-left shadow-xs">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-              <span class="text-xs text-slate-500">Booking Reference</span>
-              <button type="button" onclick="copyText('${bk.bookingRef}', 'Booking reference copied!')" class="font-mono font-extrabold text-sm text-brand-700 flex items-center gap-1.5">
+              <span class="text-xs text-slate-500">Kode Booking</span>
+              <button type="button" onclick="copyText('${bk.bookingRef}', 'Kode booking disalin!')" class="font-mono font-extrabold text-sm text-brand-700 flex items-center gap-1.5">
                 <span>${bk.bookingRef}</span>
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
             </div>
-
             <div class="py-3 flex flex-col gap-2 text-xs">
               <div class="flex justify-between">
-                <span class="text-slate-500">Route</span>
+                <span class="text-slate-500">Rute</span>
                 <span class="font-bold text-slate-900">${bk.origin.name} → ${bk.destination.name}</span>
               </div>
               <div class="flex justify-between">
@@ -1600,176 +1094,83 @@
                 <span class="font-semibold text-slate-900">${bk.operator}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-slate-500">Departure</span>
-                <span class="font-semibold text-slate-900">${formatShortDate(bk.departDate)}, ${bk.dep}</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-slate-500">Paid via</span>
+                <span class="text-slate-500">Gateway</span>
                 <span class="font-semibold text-emerald-700">${bk.paymentMethod}</span>
               </div>
             </div>
           </div>
-
-          <button type="button" onclick="navigateTab('bookings')" class="touch-target mt-4 text-xs font-semibold text-slate-500 underline">
-            Go to My Bookings
-          </button>
         </div>
       `;
     }
 
-    // -------------------------------------------------------------------------
-    // VIEW 11: PREMIUM MOBILE E-TICKET
-    // -------------------------------------------------------------------------
+    // VIEW 10: E-TICKET
     function renderEticketView() {
       const bk = state.activeTicket;
       if (!bk) return '';
-
       return `
-        <div class="screen-enter pb-12 px-4 pt-4">
-          <!-- Boarding Pass Ticket Card -->
-          <div class="bg-white rounded-3xl border border-slate-200/90 shadow-lg overflow-hidden">
-            <!-- Top Ticket Header -->
-            <div class="bg-gradient-to-r from-brand-700 to-brand-900 p-4 text-white flex items-center justify-between">
-              <div>
-                <p class="text-[10px] uppercase tracking-widest text-teal-200 font-bold">ASRI TRAVEL E-TICKET</p>
-                <h2 class="font-display font-extrabold text-base mt-0.5">${bk.operator}</h2>
-              </div>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-400/20 border border-emerald-300/30 text-emerald-200 text-[10px] font-bold">
-                ${bk.status}
-              </span>
+        <div class="screen-enter bottom-nav-padding px-4 pt-4 pb-8 flex flex-col items-center">
+          <div class="w-full max-w-[360px] bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden relative">
+            <div class="ticket-cutout-left"></div>
+            <div class="ticket-cutout-right"></div>
+
+            <div class="bg-brand-700 text-white p-5 text-center relative">
+              <span class="text-[10px] font-bold uppercase tracking-widest bg-white/20 px-3 py-1 rounded-full">ASRI Boarding Pass</span>
+              <h3 class="font-display font-extrabold text-lg mt-2">${bk.origin.name} → ${bk.destination.name}</h3>
+              <p class="text-xs text-brand-100 mt-0.5">${bk.operator} (${bk.code})</p>
             </div>
 
-            <!-- Route & Time Section -->
-            <div class="p-5 relative">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="font-display font-extrabold text-2xl text-slate-900">${bk.origin.code}</p>
-                  <p class="text-xs text-slate-500 font-medium">${bk.origin.name}</p>
-                  <p class="font-display font-bold text-sm text-brand-700 mt-1">${bk.dep}</p>
-                </div>
-
-                <div class="flex-1 flex flex-col items-center px-3">
-                  <i data-lucide="${bk.category === 'flight' ? 'plane' : bk.category === 'ferry' ? 'ship' : 'train-front'}" class="w-5 h-5 text-brand-600 mb-1"></i>
-                  <div class="w-full border-t border-dashed border-slate-300"></div>
-                  <span class="text-[10px] text-slate-400 mt-1">${bk.duration}</span>
-                </div>
-
-                <div class="text-right">
-                  <p class="font-display font-extrabold text-2xl text-slate-900">${bk.destination.code}</p>
-                  <p class="text-xs text-slate-500 font-medium">${bk.destination.name}</p>
-                  <p class="font-display font-bold text-sm text-brand-700 mt-1">${bk.arr}</p>
-                </div>
+            <div class="p-5 flex flex-col gap-3 text-xs border-b border-dashed border-slate-200">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Kode Booking</span>
+                <span class="font-mono font-bold text-brand-700">${bk.bookingRef}</span>
               </div>
-
-              <!-- Passenger & Seat Grid -->
-              <div class="grid grid-cols-2 gap-3 mt-5 pt-4 border-t border-slate-100 text-xs">
-                <div>
-                  <p class="text-[10px] uppercase text-slate-400 font-semibold">Passenger</p>
-                  <p class="font-bold text-slate-900 mt-0.5 truncate">${bk.passengers[0].title} ${bk.passengers[0].fullName}</p>
-                  ${bk.passengers.length > 1 ? `<p class="text-[11px] text-slate-500">+${bk.passengers.length - 1} more traveler(s)</p>` : ''}
-                </div>
-                <div class="text-right">
-                  <p class="text-[10px] uppercase text-slate-400 font-semibold">Seat & Class</p>
-                  <p class="font-display font-extrabold text-sm text-brand-700 mt-0.5">${bk.seats.join(', ')}</p>
-                  <p class="text-[11px] text-slate-500">${bk.seatClass}</p>
-                </div>
-                <div>
-                  <p class="text-[10px] uppercase text-slate-400 font-semibold">Travel Date</p>
-                  <p class="font-bold text-slate-900 mt-0.5">${formatShortDate(bk.departDate)}</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-[10px] uppercase text-slate-400 font-semibold">Booking Code</p>
-                  <p class="font-mono font-extrabold text-slate-900 mt-0.5">${bk.bookingRef}</p>
-                </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Nama Penumpang</span>
+                <span class="font-semibold text-slate-900">${bk.passengers[0]?.fullName || 'Raka Pratama'}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Tanggal / Waktu</span>
+                <span class="font-semibold text-slate-900">${formatShortDate(bk.departDate)}, ${bk.dep}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Kursi</span>
+                <span class="font-bold text-slate-900">${bk.seats.join(', ')} (${bk.seatClass})</span>
               </div>
             </div>
 
-            <!-- Perforated Tear Line -->
-            <div class="relative flex items-center justify-center my-1">
-              <div class="ticket-cutout-left"></div>
-              <div class="w-full border-t-2 border-dashed border-slate-200 mx-4"></div>
-              <div class="ticket-cutout-right"></div>
-            </div>
-
-            <!-- Crisp SVG QR Code Boarding Pass -->
-            <div class="p-5 pt-3 flex flex-col items-center text-center bg-slate-50/60">
-              <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-xs">
-                ${generateSvgQrCode(bk.bookingRef)}
+            <div class="p-6 flex flex-col items-center justify-center bg-slate-50">
+              <div class="w-36 h-36 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full text-slate-900">
+                  <rect width="100" height="100" fill="#fff"/>
+                  <path d="M10 10h20v20H10zM70 10h20v20H70zM10 70h20v20H10zM40 10h10v20H40zM10 40h20v10H10zM40 40h20v20H40zM70 40h20v10H70zM70 60h10v30H70zM40 70h20v10H40z" fill="currentColor"/>
+                </svg>
               </div>
-              <p class="font-mono font-bold text-xs tracking-widest text-slate-800 mt-2.5">${bk.bookingRef}</p>
-              <p class="text-[11px] text-slate-500 mt-0.5">Scan at gate 30 minutes prior to departure</p>
+              <p class="text-[10px] font-mono text-slate-400 mt-2">${bk.bookingRef}-SCANNABLE</p>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="grid grid-cols-2 gap-2.5 mt-4 no-print">
-            <button type="button" onclick="copyText('${bk.bookingRef}', 'Booking reference ${bk.bookingRef} copied!')" class="touch-target py-3 px-4 rounded-2xl bg-white border border-slate-200 font-semibold text-xs text-slate-800 flex items-center justify-center gap-2 active:scale-95 transition">
-              <i data-lucide="copy" class="w-4 h-4 text-brand-700"></i>
-              <span>Copy Ref</span>
-            </button>
-            <button type="button" onclick="window.print()" class="touch-target py-3 px-4 rounded-2xl bg-brand-700 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm active:scale-95 transition">
-              <i data-lucide="printer" class="w-4 h-4"></i>
-              <span>Download / Print</span>
-            </button>
+          <div class="w-full max-w-[360px] flex gap-2 mt-4">
+            <button type="button" onclick="navigateTab('bookings')" class="touch-target flex-1 py-3 rounded-2xl bg-slate-200 text-slate-800 font-semibold text-xs">Kembali</button>
+            <button type="button" onclick="showToast('E-Ticket diunduh ke perangkat', 'success')" class="touch-target flex-1 py-3 rounded-2xl bg-brand-700 text-white font-semibold text-xs shadow-sm">Unduh PDF</button>
           </div>
-
-          <button type="button" onclick="openBookingDetailSheet()" class="touch-target w-full mt-2.5 py-3 rounded-2xl bg-slate-100 text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 no-print">
-            <i data-lucide="receipt" class="w-4 h-4"></i>
-            <span>View Full Booking Details</span>
-          </button>
         </div>
       `;
     }
 
-    function generateSvgQrCode(seed) {
-      // Deterministic crisp vector QR code matrix for mobile scanning feel
-      const size = 136;
-      const cells = 17;
-      const cellSize = size / cells;
-      let rects = '';
-      let hash = 0;
-      for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
-
-      for (let r = 0; r < cells; r++) {
-        for (let c = 0; c < cells; c++) {
-          const isFinderTL = r < 5 && c < 5;
-          const isFinderTR = r < 5 && c >= cells - 5;
-          const isFinderBL = r >= cells - 5 && c < 5;
-          let fill = false;
-
-          if (isFinderTL || isFinderTR || isFinderBL) {
-            const lr = r >= cells - 5 ? r - (cells - 5) : r;
-            const lc = c >= cells - 5 ? c - (cells - 5) : c;
-            fill = lr === 0 || lr === 4 || lc === 0 || lc === 4 || (lr >= 1 && lr <= 3 && lc >= 1 && lc <= 3 && !(lr === 2 && lc === 2));
-          } else {
-            fill = Math.abs(Math.sin(hash + r * 31 + c * 17)) > 0.45;
-          }
-
-          if (fill) {
-            rects += `<rect x="${(c * cellSize).toFixed(1)}" y="${(r * cellSize).toFixed(1)}" width="${cellSize.toFixed(1)}" height="${cellSize.toFixed(1)}" rx="1.2" fill="#0F172A" />`;
-          }
-        }
-      }
-      return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
-    }
-
-    // =========================================================================
-    // 6. BOTTOM SHEETS (NATIVE MOBILE MODALS)
-    // =========================================================================
-    function openBottomSheet(title, bodyHtml) {
+    // Bottom Sheets & Interactions
+    function openBottomSheet(title, htmlContent) {
+      document.getElementById('sheet-title').innerText = title;
+      document.getElementById('sheet-body').innerHTML = htmlContent;
       const overlay = document.getElementById('bottom-sheet-overlay');
       const backdrop = document.getElementById('bottom-sheet-backdrop');
       const panel = document.getElementById('bottom-sheet-panel');
-      document.getElementById('sheet-title').textContent = title;
-      document.getElementById('sheet-body').innerHTML = bodyHtml;
 
       overlay.classList.remove('hidden');
-      lucide.createIcons();
-
       requestAnimationFrame(() => {
         backdrop.classList.remove('opacity-0');
         panel.classList.remove('translate-y-full');
       });
+      lucide.createIcons();
     }
 
     function closeBottomSheet() {
@@ -1779,357 +1180,12 @@
 
       backdrop.classList.add('opacity-0');
       panel.classList.add('translate-y-full');
-
       setTimeout(() => {
         overlay.classList.add('hidden');
-      }, 280);
+      }, 250);
     }
 
-    function openCitySheet(field) {
-      const title = field === 'origin' ? 'Select Departure City' : 'Select Destination City';
-      const html = `
-        <div class="mb-3">
-          <input type="text" oninput="filterCityList(this.value, '${field}')" placeholder="Search city, airport, or station..." class="touch-target w-full px-3.5 py-3 rounded-2xl bg-slate-100 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-600" />
-        </div>
-        <div id="city-sheet-list" class="flex flex-col divide-y divide-slate-100">
-          ${renderCityOptions(CITIES, field)}
-        </div>
-      `;
-      openBottomSheet(title, html);
-    }
-
-    function renderCityOptions(list, field) {
-      return list.map(city => `
-        <button type="button" onclick="chooseCity('${field}', '${city.code}')" class="touch-target py-3 flex items-center justify-between text-left active:bg-slate-50">
-          <div>
-            <p class="font-display font-bold text-sm text-slate-900">${city.name}</p>
-            <p class="text-xs text-slate-500">${city.terminal}</p>
-          </div>
-          <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">${city.code}</span>
-        </button>
-      `).join('');
-    }
-
-    function filterCityList(query, field) {
-      const q = query.toLowerCase().trim();
-      const filtered = CITIES.filter(c =>
-        c.name.toLowerCase().includes(q) ||
-        c.code.toLowerCase().includes(q) ||
-        c.terminal.toLowerCase().includes(q)
-      );
-      document.getElementById('city-sheet-list').innerHTML = renderCityOptions(filtered, field);
-    }
-
-    function chooseCity(field, code) {
-      const city = CITIES.find(c => c.code === code);
-      if (!city) return;
-      state.search[field] = city;
-      // Prevent identical origin & destination
-      if (state.search.origin.code === state.search.destination.code) {
-        const alt = CITIES.find(c => c.code !== code);
-        if (field === 'origin') state.search.destination = alt;
-        else state.search.origin = alt;
-      }
-      closeBottomSheet();
-      renderApp();
-    }
-
-    function openDateSheet() {
-      const nextDays = Array.from({ length: 7 }, (_, i) => {
-        const d = new Date(Date.now() + (i + 1) * 86400000);
-        return d.toISOString().split('T')[0];
-      });
-
-      const html = `
-        <div class="flex flex-col gap-4">
-          <div>
-            <p class="text-xs font-semibold text-slate-500 mb-2">Quick Select Departure</p>
-            <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-              ${nextDays.map(iso => `
-                <button type="button" onclick="setDepartDate('${iso}')" class="touch-target shrink-0 px-3.5 py-2.5 rounded-2xl border text-xs font-semibold ${
-                  state.search.departDate === iso ? 'bg-brand-700 text-white border-brand-700' : 'bg-slate-50 text-slate-700 border-slate-200'
-                }">
-                  ${formatShortDate(iso)}
-                </button>
-              `).join('')}
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Departure Date</label>
-            <input type="date" value="${state.search.departDate}" min="${todayISO}" onchange="setDepartDate(this.value)" class="touch-target w-full px-3.5 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-900" />
-          </div>
-
-          <div class="flex items-center justify-between pt-2 border-t border-slate-100">
-            <div>
-              <p class="font-semibold text-sm text-slate-900">Round-Trip Ticket</p>
-              <p class="text-xs text-slate-500">Include return date</p>
-            </div>
-            <input type="checkbox" ${state.search.roundTrip ? 'checked' : ''} onchange="toggleRoundTrip(this.checked)" class="w-5 h-5 accent-brand-700" />
-          </div>
-
-          ${state.search.roundTrip ? `
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Return Date</label>
-              <input type="date" value="${state.search.returnDate || state.search.departDate}" min="${state.search.departDate}" onchange="state.search.returnDate = this.value; renderApp();" class="touch-target w-full px-3.5 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-900" />
-            </div>
-          ` : ''}
-
-          <button type="button" onclick="closeBottomSheet()" class="touch-target w-full py-3.5 rounded-2xl bg-brand-700 text-white font-semibold text-sm">
-            Confirm Date
-          </button>
-        </div>
-      `;
-      openBottomSheet('Select Travel Dates', html);
-    }
-
-    function setDepartDate(iso) {
-      if (!iso) return;
-      state.search.departDate = iso;
-      closeBottomSheet();
-      renderApp();
-    }
-
-    function toggleRoundTrip(checked) {
-      state.search.roundTrip = checked;
-      if (checked && !state.search.returnDate) {
-        const next = new Date(new Date(state.search.departDate).getTime() + 2 * 86400000);
-        state.search.returnDate = next.toISOString().split('T')[0];
-      }
-      openDateSheet();
-      renderApp();
-    }
-
-    function openPassengerSheet() {
-      const renderStepperRow = (type, label, sub, count, min) => `
-        <div class="flex items-center justify-between py-3">
-          <div>
-            <p class="font-display font-bold text-sm text-slate-900">${label}</p>
-            <p class="text-xs text-slate-500">${sub}</p>
-          </div>
-          <div class="flex items-center gap-3">
-            <button type="button" onclick="updatePax('${type}', -1)" ${count <= min ? 'disabled' : ''} class="touch-target w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center font-bold text-base ${count <= min ? 'text-slate-300' : 'text-slate-800 active:bg-slate-100'}">−</button>
-            <span class="font-display font-bold text-base w-5 text-center">${count}</span>
-            <button type="button" onclick="updatePax('${type}', 1)" class="touch-target w-10 h-10 rounded-xl bg-brand-50 border border-brand-200 text-brand-700 flex items-center justify-center font-bold text-base active:bg-brand-100">+</button>
-          </div>
-        </div>
-      `;
-
-      const html = `
-        <div class="divide-y divide-slate-100">
-          ${renderStepperRow('adult', 'Adults', 'Age 12+ years', state.search.passengers.adult, 1)}
-          ${renderStepperRow('child', 'Children', 'Age 2–11 years', state.search.passengers.child, 0)}
-        </div>
-        <button type="button" onclick="closeBottomSheet()" class="touch-target w-full mt-4 py-3.5 rounded-2xl bg-brand-700 text-white font-semibold text-sm">
-          Done (${getTotalPassengers()} Passenger${getTotalPassengers() > 1 ? 's' : ''})
-        </button>
-      `;
-      openBottomSheet('Passengers', html);
-    }
-
-    function updatePax(type, delta) {
-      const current = state.search.passengers[type];
-      const next = current + delta;
-      if (type === 'adult' && (next < 1 || next > 6)) return;
-      if (type === 'child' && (next < 0 || next > 4)) return;
-      state.search.passengers[type] = next;
-      syncPassengerFormArray();
-      openPassengerSheet();
-      renderApp();
-    }
-
-    function openSortSheet() {
-      const options = [
-        { id: 'recommended', label: 'Recommended', desc: 'Best balance of price & travel duration' },
-        { id: 'cheapest', label: 'Lowest Price', desc: 'Sort from most affordable fare' },
-        { id: 'earliest', label: 'Earliest Departure', desc: 'Depart first thing in the morning' },
-        { id: 'fastest', label: 'Shortest Duration', desc: 'Fastest arrival at destination' }
-      ];
-      openBottomSheet('Sort Schedules', `
-        <div class="flex flex-col gap-2">
-          ${options.map(opt => `
-            <button type="button" onclick="setSortBy('${opt.id}')" class="touch-target p-3.5 rounded-2xl border text-left flex items-center justify-between ${
-              state.filter.sortBy === opt.id ? 'border-brand-700 bg-brand-50/50' : 'border-slate-200'
-            }">
-              <div>
-                <p class="font-display font-bold text-sm text-slate-900">${opt.label}</p>
-                <p class="text-xs text-slate-500">${opt.desc}</p>
-              </div>
-              ${state.filter.sortBy === opt.id ? '<i data-lucide="check" class="w-5 h-5 text-brand-700"></i>' : ''}
-            </button>
-          `).join('')}
-        </div>
-      `);
-    }
-
-    function setSortBy(sortKey) {
-      state.filter.sortBy = sortKey;
-      closeBottomSheet();
-      renderApp();
-    }
-
-    function openFilterSheet() {
-      const slots = [
-        { id: 'all', label: 'All Departure Times' },
-        { id: 'morning', label: 'Morning (05:00 – 12:00)' },
-        { id: 'afternoon', label: 'Afternoon (12:00 – 18:00)' },
-        { id: 'evening', label: 'Evening & Night (18:00+)' }
-      ];
-      openBottomSheet('Filter Departure Time', `
-        <div class="flex flex-col gap-2">
-          ${slots.map(s => `
-            <button type="button" onclick="setTimeFilter('${s.id}'); closeBottomSheet();" class="touch-target p-3.5 rounded-2xl border text-left flex items-center justify-between ${
-              state.filter.timeSlot === s.id ? 'border-brand-700 bg-brand-50/50 font-bold text-brand-800' : 'border-slate-200 text-slate-800'
-            }">
-              <span class="text-sm">${s.label}</span>
-              ${state.filter.timeSlot === s.id ? '<i data-lucide="check" class="w-5 h-5 text-brand-700"></i>' : ''}
-            </button>
-          `).join('')}
-        </div>
-      `);
-    }
-
-    function openSearchEditSheet() {
-      openBottomSheet('Modify Search', `
-        <div class="flex flex-col gap-3">
-          <button type="button" onclick="closeBottomSheet(); openCitySheet('origin')" class="touch-target p-3 rounded-2xl bg-slate-50 border border-slate-200 text-left">
-            <p class="text-[10px] text-slate-400 uppercase font-bold">From</p>
-            <p class="font-bold text-sm text-slate-900">${state.search.origin.name} (${state.search.origin.code})</p>
-          </button>
-          <button type="button" onclick="closeBottomSheet(); openCitySheet('destination')" class="touch-target p-3 rounded-2xl bg-slate-50 border border-slate-200 text-left">
-            <p class="text-[10px] text-slate-400 uppercase font-bold">To</p>
-            <p class="font-bold text-sm text-slate-900">${state.search.destination.name} (${state.search.destination.code})</p>
-          </button>
-          <button type="button" onclick="closeBottomSheet(); openDateSheet()" class="touch-target p-3 rounded-2xl bg-slate-50 border border-slate-200 text-left">
-            <p class="text-[10px] text-slate-400 uppercase font-bold">Departure Date</p>
-            <p class="font-bold text-sm text-slate-900">${formatShortDate(state.search.departDate)}</p>
-          </button>
-        </div>
-      `);
-    }
-
-    function openHelpSheet() {
-      openBottomSheet('ASRI 24/7 Mobile Support', `
-        <div class="flex flex-col gap-3 text-xs text-slate-600">
-          <div class="p-3.5 rounded-2xl bg-brand-50 text-brand-900">
-            <p class="font-display font-bold text-sm mb-1">Need immediate boarding help?</p>
-            <p>Our mobile travel desk responds in under 2 minutes for gate changes, reschedules, and refunds.</p>
-          </div>
-          <button type="button" onclick="closeBottomSheet(); showToast('Connecting to ASRI Concierge...')" class="touch-target w-full py-3.5 rounded-2xl bg-brand-700 text-white font-semibold text-sm flex items-center justify-center gap-2">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
-            <span>Start Live Chat</span>
-          </button>
-        </div>
-      `);
-    }
-
-    // Interactive Swipe Visitor Guide Popup Modal
-    const visitorGuideSteps = [
-      {
-        step: 1,
-        title: '1. Cari Rute Perjalanan',
-        desc: 'Pilih kategori transportasi (Kereta, Pesawat, Shuttle, Kapal), tentukan stasiun/kota asal & tujuan, serta tanggal keberangkatan dengan mudah menggunakan widget satu tangan.',
-        icon: 'search',
-        tip: 'Tips: Gunakan tombol tukar untuk membalik rute dengan cepat.'
-      },
-      {
-        step: 2,
-        title: '2. Pilih Kursi & Penumpang',
-        desc: 'Pilih jadwal favorit Anda dari daftar hasil, tentukan kursi kabin interaktif secara real-time, dan isi data identitas penumpang sesuai kartu identitas.',
-        icon: 'armchair',
-        tip: 'Tips: Sediakan nomor NIK atau paspor untuk proses kilat.'
-      },
-      {
-        step: 3,
-        title: '3. Bayar & Dapatkan E-Tiket',
-        desc: 'Selesaikan pembayaran instan via QRIS atau Virtual Account, lalu nikmati Mobile E-Tiket resmi dengan QR Code yang siap dipindai di gerbang.',
-        icon: 'qr-code',
-        tip: 'Tips: E-tiket tersimpan otomatis di menu My Booking.'
-      }
-    ];
-
-    function openVisitorGuideModal(stepIdx) {
-      const current = visitorGuideSteps[stepIdx];
-      const html = `
-        <div class="flex flex-col items-center text-center py-1">
-          <!-- Step Icon with Glow -->
-          <div class="w-16 h-16 rounded-3xl bg-brand-50 text-brand-700 flex items-center justify-center mb-3 shadow-inner ring-4 ring-brand-100/50">
-            <i data-lucide="${current.icon}" class="w-8 h-8"></i>
-          </div>
-          
-          <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800 mb-1.5">
-            Langkah ${current.step} dari 3
-          </span>
-
-          <h3 class="font-display font-extrabold text-base text-slate-900 mb-2">${current.title}</h3>
-          
-          <p class="text-xs text-slate-600 leading-relaxed px-2 mb-4">${current.desc}</p>
-
-          <!-- Interactive Tip Box -->
-          <div class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-3 mb-5 text-left flex items-start gap-2.5">
-            <i data-lucide="sparkles" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
-            <p class="text-[11px] text-slate-700 font-medium leading-snug">${current.tip}</p>
-          </div>
-
-          <!-- Step Progress Dots -->
-          <div class="flex items-center justify-center gap-2 mb-5">
-            ${visitorGuideSteps.map((_, i) => `
-              <button type="button" onclick="openVisitorGuideModal(${i})" class="h-2 rounded-full transition-all duration-300 ${i === stepIdx ? 'w-8 bg-brand-700' : 'w-2 bg-slate-200'}"></button>
-            `).join('')}
-          </div>
-
-          <!-- Navigation Buttons -->
-          <div class="grid grid-cols-2 gap-2.5 w-full">
-            ${stepIdx > 0 ? `
-              <button type="button" onclick="openVisitorGuideModal(${stepIdx - 1})" class="touch-target py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs active:scale-95 transition">
-                Sebelumnya
-              </button>
-            ` : '<div></div>'}
-
-            ${stepIdx < visitorGuideSteps.length - 1 ? `
-              <button type="button" onclick="openVisitorGuideModal(${stepIdx + 1})" class="touch-target py-3.5 rounded-2xl bg-brand-700 hover:bg-brand-800 text-white font-semibold text-xs active:scale-95 transition shadow-md shadow-brand-700/20">
-                Selanjutnya →
-              </button>
-            ` : `
-              <button type="button" onclick="closeBottomSheet(); showToast('Panduan selesai! Selamat merencanakan perjalanan.', 'success');" class="touch-target py-3.5 rounded-2xl bg-brand-700 hover:bg-brand-800 text-white font-semibold text-xs active:scale-95 transition shadow-md shadow-brand-700/20">
-                Mulai Menjelajah
-              </button>
-            `}
-          </div>
-        </div>
-      `;
-      openBottomSheet('Panduan Penggunaan ASRI', html);
-    }
-
-    function openBookingDetailSheet() {
-      const bk = state.activeTicket;
-      if (!bk) return;
-      openBottomSheet('Booking Details', `
-        <div class="flex flex-col gap-2.5 text-xs">
-          <div class="flex justify-between py-1.5 border-b border-slate-100">
-            <span class="text-slate-500">Reference ID</span>
-            <span class="font-mono font-bold text-slate-900">${bk.bookingRef}</span>
-          </div>
-          <div class="flex justify-between py-1.5 border-b border-slate-100">
-            <span class="text-slate-500">Booked On</span>
-            <span class="font-semibold text-slate-900">${bk.bookedAt}</span>
-          </div>
-          <div class="flex justify-between py-1.5 border-b border-slate-100">
-            <span class="text-slate-500">Payment Method</span>
-            <span class="font-semibold text-slate-900">${bk.paymentMethod}</span>
-          </div>
-          <div class="flex justify-between py-1.5">
-            <span class="text-slate-500">Total Paid</span>
-            <span class="font-display font-extrabold text-sm text-brand-700">${formatIDR(bk.totalPaid)}</span>
-          </div>
-        </div>
-      `);
-    }
-
-    // =========================================================================
-    // 7. INTERACTIVE ACTIONS & END-TO-END BOOKING FLOW
-    // =========================================================================
-    function selectCategory(catId) {
+    function setSearchCategory(catId) {
       state.search.category = catId;
       renderApp();
     }
@@ -2141,94 +1197,113 @@
       renderApp();
     }
 
-    function quickSelectDestination(code, autoSearch = false) {
-      const dest = CITIES.find(c => c.code === code);
-      if (!dest) return;
-      state.search.destination = dest;
-      if (state.search.origin.code === code) {
-        state.search.origin = CITIES.find(c => c.code !== code);
+    function openDestinationSheet(type) {
+      const title = type === 'origin' ? 'Pilih Kota Keberangkatan' : 'Pilih Kota Tujuan';
+      const html = `
+        <div class="flex flex-col gap-2">
+          ${CITIES.map(c => `
+            <button type="button" onclick="selectCity('${type}', '${c.code}')" class="touch-target p-3 rounded-2xl bg-slate-50 hover:bg-brand-50 border border-slate-200 flex items-center justify-between text-left transition">
+              <div>
+                <p class="font-display font-bold text-sm text-slate-900">${c.name} (${c.code})</p>
+                <p class="text-[11px] text-slate-500">${c.terminal}</p>
+              </div>
+              <span class="text-xs font-semibold text-brand-700">${c.province}</span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+      openBottomSheet(title, html);
+    }
+
+    function selectCity(type, code) {
+      const city = CITIES.find(c => c.code === code);
+      if (city) {
+        if (type === 'origin') state.search.origin = city;
+        else state.search.destination = city;
       }
-      if (code === 'DPS' || code === 'LBJ') {
-        state.search.category = 'flight';
-      }
-      if (autoSearch) {
-        executeSearch();
-      } else {
-        showToast(`Destination set to ${dest.name}`);
-        renderApp();
-      }
-    }
-
-    function quickRouteSearch(fromCode, toCode, cat) {
-      state.search.origin = CITIES.find(c => c.code === fromCode) || state.search.origin;
-      state.search.destination = CITIES.find(c => c.code === toCode) || state.search.destination;
-      state.search.category = cat;
-      executeSearch();
-    }
-
-    function applyPromoAndGo(code) {
-      state.bookingForm.voucherCode = code;
-      copyText(code, `Promo ${code} saved for checkout!`);
-    }
-
-    function executeSearch() {
-      syncPassengerFormArray();
-      navigateView('results');
-    }
-
-    function setTimeFilter(slot) {
-      state.filter.timeSlot = slot;
+      closeBottomSheet();
       renderApp();
     }
 
-    function selectTrip(tripId) {
-      const list = SCHEDULE_TEMPLATES[state.search.category] || SCHEDULE_TEMPLATES.train;
-      state.selectedTrip = list.find(t => t.id === tripId);
-      syncPassengerFormArray();
-      navigateView('detail');
+    function openDateSheet() {
+      const html = `
+        <div class="flex flex-col gap-3">
+          <label class="block text-xs font-semibold text-slate-700">Pilih Tanggal Berangkat</label>
+          <input type="date" value="${state.search.departDate}" onchange="state.search.departDate=this.value" class="touch-target w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900" />
+          <button type="button" onclick="closeBottomSheet(); renderApp();" class="touch-target w-full py-3.5 rounded-2xl bg-brand-700 text-white font-semibold text-xs mt-2">Simpan Tanggal</button>
+        </div>
+      `;
+      openBottomSheet('Pilih Tanggal', html);
     }
 
-    function toggleSeatSelection(seat) {
-      const needed = getTotalPassengers();
-      const idx = state.selectedSeats.indexOf(seat);
-      if (idx !== -1) {
+    function openPassengerSheet() {
+      const html = `
+        <div class="flex flex-col gap-4 text-xs">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="font-display font-bold text-sm text-slate-900">Dewasa (12+ th)</p>
+              <p class="text-slate-500">Tarif normal</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="button" onclick="adjustPassenger('adult', -1)" class="w-9 h-9 rounded-xl bg-slate-100 font-bold text-slate-700 flex items-center justify-center">-</button>
+              <span class="font-bold text-sm w-4 text-center">${state.search.passengers.adult}</span>
+              <button type="button" onclick="adjustPassenger('adult', 1)" class="w-9 h-9 rounded-xl bg-brand-700 text-white font-bold flex items-center justify-center">+</button>
+            </div>
+          </div>
+          <button type="button" onclick="closeBottomSheet(); renderApp();" class="touch-target w-full py-3.5 rounded-2xl bg-brand-700 text-white font-semibold text-xs mt-2">Selesai</button>
+        </div>
+      `;
+      openBottomSheet('Jumlah Penumpang', html);
+    }
+
+    function adjustPassenger(type, delta) {
+      if (type === 'adult') {
+        state.search.passengers.adult = Math.max(1, state.search.passengers.adult + delta);
+      }
+      openPassengerSheet();
+    }
+
+    function executeSearch() {
+      navigateView('results');
+    }
+
+    function selectDestinationCard(code) {
+      const found = CITIES.find(c => c.code === code);
+      if (found) {
+        state.search.destination = found;
+        navigateView('results');
+      }
+    }
+
+    function selectTripResult(id) {
+      const list = SCHEDULE_TEMPLATES[state.search.category] || SCHEDULE_TEMPLATES.train;
+      const trip = list.find(t => t.id === id);
+      if (trip) {
+        state.selectedTrip = trip;
+        navigateView('detail');
+      }
+    }
+
+    function toggleSeatSelection(seatName) {
+      if (state.selectedSeats.includes(seatName)) {
         if (state.selectedSeats.length > 1) {
-          state.selectedSeats.splice(idx, 1);
+          state.selectedSeats = state.selectedSeats.filter(s => s !== seatName);
         }
       } else {
-        if (state.selectedSeats.length >= needed) {
-          state.selectedSeats.shift();
+        if (state.selectedSeats.length < getTotalPassengers()) {
+          state.selectedSeats.push(seatName);
+        } else {
+          state.selectedSeats = [seatName];
         }
-        state.selectedSeats.push(seat);
       }
       renderApp();
     }
 
     function proceedToPassenger() {
-      const needed = getTotalPassengers();
-      if (state.selectedSeats.length < needed) {
-        showToast(`Please select ${needed} seat(s) to continue`, 'error');
-        return;
-      }
       navigateView('passenger');
     }
 
     function submitPassengerForm() {
-      if (!state.bookingForm.contactName.trim() || !state.bookingForm.contactPhone.trim()) {
-        showToast('Please enter contact name and phone number', 'error');
-        return;
-      }
-      for (let i = 0; i < state.bookingForm.passengers.length; i++) {
-        const p = state.bookingForm.passengers[i];
-        if (!p.fullName.trim() || !p.idNumber.trim()) {
-          showToast(`Complete name & ID for Passenger ${i + 1}`, 'error');
-          return;
-        }
-      }
-      // Auto-apply voucher if pre-filled
-      if (state.bookingForm.voucherCode) {
-        computeVoucherDiscount(state.bookingForm.voucherCode, true);
-      }
       navigateView('summary');
     }
 
@@ -2240,7 +1315,8 @@
     function quickFillVoucher(code) {
       const input = document.getElementById('voucher-input');
       if (input) input.value = code;
-      applyVoucherCode();
+      computeVoucherDiscount(code, false);
+      renderApp();
     }
 
     function applyVoucherCode() {
@@ -2255,7 +1331,7 @@
       if (!promo || !state.selectedTrip) {
         state.bookingForm.voucherCode = '';
         state.bookingForm.discountAmount = 0;
-        if (!silent && code) showToast('Invalid voucher code. Try ASRI25 or HEMAT50', 'error');
+        if (!silent && code) showToast('Kode promo tidak valid. Coba ASRI25 / HEMAT50', 'error');
         return;
       }
       const base = state.selectedTrip.price * getTotalPassengers();
@@ -2264,29 +1340,38 @@
         : promo.value;
       state.bookingForm.voucherCode = code;
       state.bookingForm.discountAmount = disc;
-      if (!silent) showToast(`Voucher ${code} applied! Saved ${formatIDR(disc)}`, 'success');
+      if (!silent) showToast(`Promo ${code} diterapkan! Hemat ${formatIDR(disc)}`, 'success');
     }
 
-    function selectPaymentMethod(methodId) {
-      state.bookingForm.paymentMethod = methodId;
-      renderApp();
-    }
-
-    function processMockPayment() {
+    async function processMockPayment() {
       const trip = state.selectedTrip;
       if (!trip) return;
 
-      const methodNames = {
-        qris: 'QRIS Instant',
-        bca_va: 'BCA Virtual Account',
-        mandiri_va: 'Mandiri Virtual Account',
-        card: 'Credit / Debit Card'
-      };
+      const grandTotal = calculateGrandTotal();
+      const bookingRef = 'ASRI-' + Math.floor(10000 + Math.random() * 89999);
+
+      showToast('Membuat invoice pembayaran via Edge Function...', 'info');
+
+      try {
+        await fetch('https://xbjvvsuyrryibyrjehko.supabase.co/functions/v1/poketo-create-invoice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: grandTotal,
+            external_id: bookingRef,
+            payer_email: state.bookingForm.contactEmail,
+            description: `ASRI Travel Ticket ${state.search.origin.code} -> ${state.search.destination.code} (${bookingRef})`,
+            payment_method: 'edge_function_gateway'
+          })
+        });
+      } catch (err) {
+        console.warn('Network integration note:', err);
+      }
 
       const newBooking = {
-        bookingRef: 'ASRI-' + Math.floor(10000 + Math.random() * 89999),
+        bookingRef: bookingRef,
         status: 'CONFIRMED',
-        bookedAt: '12 Nov 2026, 20:13',
+        bookedAt: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
         category: state.search.category,
         operator: trip.operator,
         code: trip.code,
@@ -2299,8 +1384,8 @@
         seatClass: trip.class,
         seats: [...state.selectedSeats],
         passengers: JSON.parse(JSON.stringify(state.bookingForm.passengers)),
-        totalPaid: calculateGrandTotal(),
-        paymentMethod: methodNames[state.bookingForm.paymentMethod] || 'QRIS Instant'
+        totalPaid: grandTotal,
+        paymentMethod: 'Supabase Edge Function'
       };
 
       state.bookings.unshift(newBooking);
@@ -2310,38 +1395,39 @@
     }
 
     function openActiveTicket() {
-      if (state.activeTicket) {
-        navigateView('eticket');
-      }
-    }
-
-    function openTicketByIndex(idx) {
-      state.activeTicket = state.bookings[idx];
       navigateView('eticket');
     }
 
-    function copyText(text, successMsg) {
-      const tempInput = document.createElement('input');
-      tempInput.value = text;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      try {
-        document.execCommand('copy');
-        showToast(successMsg, 'success');
-      } catch (e) {
-        showToast(text, 'info');
-      }
-      document.body.removeChild(tempInput);
+    function viewBookingTicket(index) {
+      state.activeTicket = state.bookings[index];
+      navigateView('eticket');
     }
 
-    // Initialize Application
-    window.addEventListener('DOMContentLoaded', () => {
+    function copyText(text, msg) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const t = document.createElement('textarea');
+        t.value = text;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        t.remove();
+      }
+      showToast(msg, 'success');
+    }
+
+    function openGuideModalDirect() {
+      state.guideStep = 0;
+      document.getElementById('guide-modal').classList.remove('hidden');
+      updateGuideModal();
+    }
+
+    // Window Onload Initialization
+    window.onload = function() {
+      updateGuideModal();
       renderApp();
-      // Automatically open the Visitor Guide on first app launch
-      setTimeout(() => {
-        openVisitorGuideModal(0);
-      }, 400);
-    });
+    };
   </script>
 </body>
 </html>
