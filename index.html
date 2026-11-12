@@ -265,111 +265,15 @@
     // =========================================================================
     // 1. MOCK TRAVEL DATA (INDONESIA INTERCITY & ISLAND ROUTES)
     // =========================================================================
-    const CITIES = [
-      { code: 'JKT', name: 'Jakarta', terminal: 'Gambir / Soekarno-Hatta', province: 'DKI Jakarta', popular: true },
-      { code: 'BDG', name: 'Bandung', terminal: 'Bandung Station / Pasteur', province: 'West Java', popular: true },
-      { code: 'YIA', name: 'Yogyakarta', terminal: 'Tugu Station / YIA Airport', province: 'DI Yogyakarta', popular: true },
-      { code: 'DPS', name: 'Denpasar, Bali', terminal: 'Ngurah Rai / Mengwi', province: 'Bali', popular: true },
-      { code: 'SUB', name: 'Surabaya', terminal: 'Gubeng / Juanda', province: 'East Java', popular: true },
-      { code: 'SRG', name: 'Semarang', terminal: 'Tawang Bank Jateng', province: 'Central Java', popular: false },
-      { code: 'MLG', name: 'Malang', terminal: 'Malang Kotabaru', province: 'East Java', popular: false },
-      { code: 'LBJ', name: 'Labuan Bajo', terminal: 'Komodo Harbor / Airport', province: 'East Nusa Tenggara', popular: true }
-    ];
+    let CITIES = [{ id: null, code: 'ID', name: 'Indonesia', terminal: 'Destinasi perjalanan' }];
 
-    const CATEGORIES = [
-      { id: 'train', label: 'Train', icon: 'train-front', badge: 'Fast' },
-      { id: 'flight', label: 'Flight', icon: 'plane', badge: 'Promo' },
-      { id: 'shuttle', label: 'Shuttle', icon: 'bus', badge: 'Door-to-Door' },
-      { id: 'ferry', label: 'Fast Boat', icon: 'ship', badge: 'Island' }
-    ];
+    const CATEGORIES = [{ id: 'all', label: 'Paket Wisata', icon: 'map', badge: 'Explore' }];
 
-    const DESTINATIONS = [
-      {
-        id: 'dest-yia',
-        city: 'Yogyakarta',
-        code: 'YIA',
-        tagline: 'Royal Heritage & Culinary',
-        priceFrom: 285000,
-        rating: '4.9',
-        gradient: 'from-teal-700 via-emerald-700 to-slate-900',
-        badge: 'Top Pick'
-      },
-      {
-        id: 'dest-dps',
-        city: 'Denpasar, Bali',
-        code: 'DPS',
-        tagline: 'Uluwatu Cliffs & Beach Clubs',
-        priceFrom: 690000,
-        rating: '4.9',
-        gradient: 'from-amber-600 via-orange-700 to-slate-900',
-        badge: '20% OFF'
-      },
-      {
-        id: 'dest-bdg',
-        city: 'Bandung',
-        code: 'BDG',
-        tagline: 'Highland Coffee & Pine Forests',
-        priceFrom: 135000,
-        rating: '4.8',
-        gradient: 'from-cyan-700 via-teal-800 to-slate-900',
-        badge: 'Weekend'
-      },
-      {
-        id: 'dest-lbj',
-        city: 'Labuan Bajo',
-        code: 'LBJ',
-        tagline: 'Padar Island & Komodo Sailing',
-        priceFrom: 1150000,
-        rating: '5.0',
-        gradient: 'from-indigo-700 via-sky-800 to-slate-900',
-        badge: 'Trending'
-      }
-    ];
+    let DESTINATIONS = [];
 
-    const PROMOS = [
-      {
-        code: 'ASRI25',
-        title: 'Payday Escape 25% Off',
-        desc: 'Save up to IDR 150.000 on Executive Trains & Flights',
-        discountType: 'percent',
-        value: 0.25,
-        maxDiscount: 150000,
-        bg: 'from-teal-700 to-emerald-800'
-      },
-      {
-        code: 'HEMAT50',
-        title: 'Flat IDR 50.000 Off',
-        desc: 'Valid for all intercity shuttles & morning departures',
-        discountType: 'flat',
-        value: 50000,
-        maxDiscount: 50000,
-        bg: 'from-amber-600 to-orange-700'
-      }
-    ];
+    const PROMOS = [];
 
-    const SCHEDULE_TEMPLATES = {
-      train: [
-        { id: 'TR-101', operator: 'KAI Argo Parahyangan', code: 'KA-42', dep: '06:30', arr: '09:25', duration: '2h 55m', durationMins: 175, class: 'Executive', price: 250000, seats: 14, amenities: ['AC', 'Power Outlet', 'Reclining Seat', 'Cafe Car'] },
-        { id: 'TR-102', operator: 'Whoosh High-Speed', code: 'G-1018', dep: '08:15', arr: '09:02', duration: '0h 47m', durationMins: 47, class: 'First Class', price: 350000, seats: 6, amenities: ['350 km/h', 'Lounge Access', 'Snack Box', 'USB-C'] },
-        { id: 'TR-103', operator: 'KAI Taksaka Luxury', code: 'KA-68', dep: '10:40', arr: '16:55', duration: '6h 15m', durationMins: 375, class: 'Luxury Sleeper', price: 540000, seats: 4, amenities: ['Lie-Flat Pod', 'Hot Meal', 'IFE Screen', 'Blanket'] },
-        { id: 'TR-104', operator: 'KAI Serayu Express', code: 'KA-214', dep: '14:20', arr: '18:10', duration: '3h 50m', durationMins: 230, class: 'Premium Economy', price: 145000, seats: 28, amenities: ['AC', 'Power Outlet', 'Overhead Rack'] },
-        { id: 'TR-105', operator: 'KAI Bima Night', code: 'KA-76', dep: '19:30', arr: '01:45', duration: '6h 15m', durationMins: 375, class: 'Executive', price: 390000, seats: 9, amenities: ['AC', 'Pillow & Blanket', 'Power Outlet'] }
-      ],
-      flight: [
-        { id: 'FL-201', operator: 'Garuda Indonesia', code: 'GA-404', dep: '07:10', arr: '09:55', duration: '1h 45m', durationMins: 105, class: 'Economy Flex', price: 1180000, seats: 8, amenities: ['20kg Baggage', 'In-flight Meal', 'IFE'] },
-        { id: 'FL-202', operator: 'Citilink Green', code: 'QG-682', dep: '10:25', arr: '13:05', duration: '1h 40m', durationMins: 100, class: 'Economy', price: 795000, seats: 19, amenities: ['15kg Baggage', '7kg Cabin'] },
-        { id: 'FL-203', operator: 'Batik Air', code: 'ID-6508', dep: '15:40', arr: '18:25', duration: '1h 45m', durationMins: 105, class: 'Business', price: 2150000, seats: 3, amenities: ['30kg Baggage', 'Priority Boarding', 'Hot Meal'] }
-      ],
-      shuttle: [
-        { id: 'SH-301', operator: 'DayTrans Executive', code: 'DT-09', dep: '06:00', arr: '09:15', duration: '3h 15m', durationMins: 195, class: 'Captain Seat', price: 135000, seats: 5, amenities: ['8-Seater HiAce', 'USB Charger', 'Mineral Water'] },
-        { id: 'SH-302', operator: 'Cititrans Premier', code: 'CT-14', dep: '09:30', arr: '12:40', duration: '3h 10m', durationMins: 190, class: 'Executive', price: 165000, seats: 7, amenities: ['Leg Rest', 'GPS Tracked', 'AC'] },
-        { id: 'SH-303', operator: 'Jackal Holidays', code: 'JH-22', dep: '16:15', arr: '19:45', duration: '3h 30m', durationMins: 210, class: 'Luxury Van', price: 150000, seats: 11, amenities: ['Wi-Fi', 'Reclining Seat', 'USB Port'] }
-      ],
-      ferry: [
-        { id: 'FR-401', operator: 'Eka Jaya Fast Boat', code: 'EJ-01', dep: '08:00', arr: '09:30', duration: '1h 30m', durationMins: 90, class: 'VIP Deck', price: 320000, seats: 15, amenities: ['Air Conditioned', 'Sun Deck', 'Life Jacket'] },
-        { id: 'FR-402', operator: 'BlueWater Express', code: 'BW-04', dep: '11:15', arr: '12:55', duration: '1h 40m', durationMins: 100, class: 'Standard Cabin', price: 275000, seats: 22, amenities: ['Hotel Transfer', '25kg Luggage'] }
-      ]
-    };
+    let SCHEDULE_TEMPLATES = { all: [] };
 
     // =========================================================================
     // 2. APPLICATION STATE (SINGLE SOURCE OF TRUTH)
@@ -380,9 +284,9 @@
       activeTab: 'home', // 'home' | 'explore' | 'bookings' | 'account'
       view: 'home',      // 'home' | 'explore' | 'bookings' | 'account' | 'results' | 'detail' | 'passenger' | 'summary' | 'payment' | 'confirmation' | 'eticket'
       search: {
-        category: 'train',
+        category: 'all',
         origin: CITIES[0],      // Jakarta
-        destination: CITIES[2], // Yogyakarta
+        destination: { id: null, code: '', name: 'Pilih destinasi', terminal: 'Pilih destinasi aktif' },
         departDate: todayISO,
         returnDate: '',
         roundTrip: false,
@@ -394,42 +298,120 @@
         seatClass: 'all'
       },
       selectedTrip: null,
-      selectedSeats: ['4A'],
+      selectedSeats: [],
       bookingForm: {
-        contactName: 'Raka Pratama',
-        contactEmail: 'raka.pratama@asritravel.id',
-        contactPhone: '+62 812 8890 4412',
-        passengers: [
-          { title: 'Mr.', fullName: 'Raka Pratama', idNumber: '3174091205940002' }
-        ],
+        contactName: '',
+        contactEmail: '',
+        contactPhone: '',
+        passengers: [{ title: 'Mr.', fullName: '', idNumber: '' }],
         voucherCode: '',
         discountAmount: 0,
-        paymentMethod: 'qris'
+        paymentMethod: 'poketo'
       },
-      bookings: [
-        {
-          bookingRef: 'ASRI-89421',
-          status: 'CONFIRMED',
-          bookedAt: '10 Nov 2026, 14:20',
-          category: 'train',
-          operator: 'Whoosh High-Speed',
-          code: 'G-1018',
-          origin: CITIES[0],
-          destination: CITIES[1],
-          departDate: '2026-11-18',
-          dep: '08:15',
-          arr: '09:02',
-          duration: '0h 47m',
-          seatClass: 'First Class',
-          seats: ['2A'],
-          passengers: [{ title: 'Mr.', fullName: 'Raka Pratama', idNumber: '3174091205940002' }],
-          totalPaid: 350000,
-          paymentMethod: 'QRIS Instant'
-        }
-      ],
+      bookings: [],
       activeTicket: null,
-      summaryExpanded: false
+      summaryExpanded: false,
+      travelPackages: [], travelSchedules: [], loadingCatalog: true, catalogError: '', processingPayment: false, bookingRequest: null, currentBooking: null
     };
+
+
+    const SUPABASE_URL = 'https://gwifvnzbkqkdcithogwj.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_czWvmOvvpVNWJOk7p4zONw_JxMKNRxG';
+    const EDGE_FUNCTIONS_URL = SUPABASE_URL + '/functions/v1/';
+
+    async function callTravelApi(path, options = {}) {
+      const headers = {
+        apikey: SUPABASE_PUBLISHABLE_KEY,
+        Authorization: 'Bearer ' + SUPABASE_PUBLISHABLE_KEY,
+        'Content-Type': 'application/json',
+        ...(options.headers || {})
+      };
+      const response = await fetch(EDGE_FUNCTIONS_URL + path, {
+        method: options.method || 'GET', headers,
+        ...(options.body ? { body: JSON.stringify(options.body) } : {})
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload.error) throw new Error(payload.detail || payload.error || 'backend_request_failed');
+      return payload;
+    }
+
+    function slugCode(value) {
+      return String(value || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8) || 'DEST';
+    }
+
+    async function loadTravelCatalog() {
+      state.loadingCatalog = true; state.catalogError = '';
+      try {
+        const today = new Date().toISOString().slice(0, 10);
+        const until = new Date(Date.now() + 365 * 86400000).toISOString().slice(0, 10);
+        const [dRes, pRes, sRes] = await Promise.all([
+          callTravelApi('asri-travel-api?resource=destinations'),
+          callTravelApi('asri-travel-api?resource=packages'),
+          callTravelApi('asri-travel-api?resource=schedules&from=' + today + '&to=' + until)
+        ]);
+        const destinations = dRes.data || [], packages = pRes.data || [];
+        const byId = new Map(packages.map(p => [p.id, p]));
+        const schedules = (sRes.data || []).map(row => {
+          const p = byId.get(row.package_id) || {};
+          const d = p.travel_destinations || destinations.find(x => x.id === p.destination_id) || {};
+          const days = Number(p.duration_days || 1), nights = Number(p.duration_nights || 0);
+          return {
+            id: row.schedule_id, packageId: row.package_id, title: p.title || row.package_title || 'Paket Wisata',
+            slug: p.slug || '', destinationId: p.destination_id || null, destinationName: d.name || 'Indonesia',
+            destinationCode: slugCode(d.slug || d.name), price: Number(row.price),
+            availableSeats: Number(row.available_seats), totalSeats: Number(row.total_seats),
+            startDate: row.start_date, endDate: row.end_date, departureTime: row.departure_time || '',
+            durationDays: days, durationNights: nights, duration: days + ' hari / ' + nights + ' malam',
+            description: p.description || p.summary || '',
+            inclusions: Array.isArray(p.inclusions) ? p.inclusions : [],
+            exclusions: Array.isArray(p.exclusions) ? p.exclusions : [],
+            itinerary: Array.isArray(p.itinerary) ? p.itinerary : []
+          };
+        });
+        CITIES = [{ id: null, code: 'ID', name: 'Indonesia', terminal: 'Destinasi perjalanan' }]
+          .concat(destinations.map(d => ({ id: d.id, code: slugCode(d.slug || d.name), name: d.name, terminal: [d.city,d.country].filter(Boolean).join(', ') || 'Indonesia' })));
+        DESTINATIONS = destinations.map(d => {
+          const prices = packages.filter(p => p.destination_id === d.id).map(p => Number(p.base_price)).filter(Number.isFinite);
+          return { id: d.id, code: slugCode(d.slug || d.name), city: d.name,
+            tagline: d.description || d.city || d.country || 'Jelajahi destinasi',
+            badge: 'Destinasi', rating: '', gradient: 'from-teal-700 via-emerald-700 to-slate-900',
+            priceFrom: prices.length ? Math.min(...prices) : null };
+        });
+        state.travelPackages = packages; state.travelSchedules = schedules; SCHEDULE_TEMPLATES = { all: schedules };
+        const selected = CITIES.find(c => c.id && c.id === state.search.destination?.id);
+        state.search.origin = CITIES[0];
+        state.search.destination = selected || CITIES.find(c => c.id) || { id: null, code: '', name: 'Pilih destinasi', terminal: 'Belum ada destinasi aktif' };
+      } catch (error) {
+        state.catalogError = error.message || 'catalog_load_failed';
+        console.error('ASRI catalog load failed', error);
+      } finally { state.loadingCatalog = false; renderApp(); }
+    }
+
+    async function restoreBookingFromRedirect() {
+      const params = new URLSearchParams(window.location.search), bookingCode = params.get('bookingCode');
+      if (!bookingCode) return;
+      try {
+        const access = JSON.parse(sessionStorage.getItem('asriTravelBookingAccess') || 'null');
+        if (!access || access.bookingCode !== bookingCode || !access.bookingToken) {
+          showToast('Sesi booking tidak ditemukan. Hubungi ASRI dengan kode ' + bookingCode, 'error'); return;
+        }
+        const result = await callTravelApi('asri-travel-api?resource=booking&bookingCode=' + encodeURIComponent(bookingCode), {
+          headers: { 'x-booking-token': access.bookingToken }
+        });
+        const remote = result.data || {};
+        const saved = JSON.parse(sessionStorage.getItem('asriTravelLastBooking') || 'null');
+        if (!saved) return;
+        saved.status = remote.booking?.status === 'confirmed' && remote.invoice?.status === 'paid'
+          ? 'CONFIRMED' : String(remote.invoice?.status || remote.booking?.status || 'PENDING').toUpperCase();
+        state.currentBooking = saved; state.bookings = [saved]; state.activeTicket = saved;
+        sessionStorage.setItem('asriTravelLastBooking', JSON.stringify(saved));
+        if (saved.status === 'CONFIRMED') navigateView('confirmation');
+        else { state.view = 'bookings'; state.activeTab = 'bookings'; renderApp(); showToast('Pembayaran belum terkonfirmasi. Status: ' + saved.status); }
+      } catch (error) {
+        console.error('ASRI booking status restore failed', error);
+        showToast('Status booking belum dapat diperiksa. Coba lagi beberapa saat.', 'error');
+      } finally { window.history.replaceState({}, document.title, window.location.pathname); }
+    }
 
     // =========================================================================
     // 3. UTILITY HELPERS
