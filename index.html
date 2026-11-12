@@ -59,11 +59,10 @@
       padding: 0;
       width: 100%;
       min-height: 100%;
-      touch-action: pan-x pan-y;
       background-color: #E2E8F0; /* Neutral outer backdrop if viewed on wider browser, strictly framing mobile viewport */
       font-family: 'Inter', sans-serif;
       color: #0F172A;
-      overflow-x: clip;
+      overflow-x: hidden;
       overscroll-behavior-y: none;
     }
 
@@ -79,42 +78,8 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 0 40px rgba(15, 23, 42, 0.12);
-      overflow-x: clip;
+      overflow-x: hidden;
     }
-
-    /* Hide scrollbar chrome everywhere while keeping touch, wheel, and keyboard scrolling. */
-    *, *::before, *::after {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    *::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      height: 0;
-    }
-
-    #mobile-app-shell:fullscreen,
-    #mobile-app-shell:-webkit-full-screen {
-      width: 100%;
-      max-width: none;
-      min-height: 100dvh;
-      overflow-y: auto;
-      border: 0;
-    }
-
-    #splash-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
-      background: radial-gradient(ellipse at 50% 20%, rgba(45, 212, 191, 0.28), transparent 45%), linear-gradient(145deg, #0F766E, #134E4A 58%, #0F172A);
-      color: white;
-    }
-    #splash-screen.hidden { display: none; }
-    #splash-screen .splash-content { width: 100%; max-width: 360px; text-align: center; }
 
     /* Hide scrollbars on horizontal carousels while keeping smooth touch scroll */
     .no-scrollbar::-webkit-scrollbar {
@@ -190,68 +155,6 @@
       min-width: 44px;
     }
 
-    /* Polished mobile application finish */
-    body {
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(20, 184, 166, 0.10), transparent 36rem),
-        #E2E8F0;
-    }
-
-    #mobile-app-shell {
-      background-color: #F8FAFC;
-      border-inline: 1px solid rgba(148, 163, 184, 0.12);
-    }
-
-    #app-header {
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
-    }
-
-    #app-main {
-      min-height: calc(100dvh - 65px);
-      background: linear-gradient(180deg, #F8FAFC 0%, #F4F8FA 100%);
-    }
-
-    #bottom-nav,
-    #sticky-cta-bar {
-      box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.07);
-    }
-
-    #app-main .bg-white.rounded-3xl {
-      border-color: rgba(203, 213, 225, 0.78);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
-    }
-
-    #app-main button {
-      transition-property: color, background-color, border-color, box-shadow, transform;
-      transition-duration: 180ms;
-      transition-timing-function: ease;
-    }
-
-    #mobile-app-shell button {
-      -webkit-touch-callout: none;
-    }
-
-    #mobile-app-shell button:focus-visible,
-    #mobile-app-shell input:focus-visible,
-    #mobile-app-shell select:focus-visible {
-      outline: 3px solid rgba(20, 184, 166, 0.45);
-      outline-offset: 2px;
-    }
-
-    #mobile-app-shell input,
-    #mobile-app-shell select {
-      accent-color: #0F766E;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
     /* Print Styling for E-Ticket */
     @media print {
       body { background: #FFF; }
@@ -264,22 +167,6 @@
 
   <!-- Mobile App Root Shell -->
   <div id="mobile-app-shell">
-
-    <!-- Entry screen remains available whenever fullscreen is exited -->
-    <section id="splash-screen" role="dialog" aria-modal="true" aria-labelledby="splash-title">
-      <div class="splash-content">
-        <div class="w-20 h-20 rounded-3xl bg-white/15 border border-white/20 flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
-          <i data-lucide="compass" class="w-10 h-10 text-amber-300"></i>
-        </div>
-        <p class="text-xs font-bold uppercase tracking-[0.24em] text-teal-200 mb-2">Your journey begins here</p>
-        <h1 id="splash-title" class="font-display font-extrabold text-3xl tracking-tight">ASRI TRAVEL</h1>
-        <p class="text-sm text-white/75 mt-3 leading-relaxed">Temukan perjalanan pilihan dengan pengalaman mobile yang lebih nyaman.</p>
-        <button type="button" onclick="enterApp()" class="touch-target w-full mt-8 py-4 rounded-2xl bg-amber-400 hover:bg-amber-300 active:scale-[0.98] text-slate-950 font-display font-extrabold text-sm shadow-xl transition">
-          Masuk / Buka Aplikasi
-        </button>
-        <p id="splash-hint" class="text-[11px] text-white/60 mt-4">Ketuk tombol untuk membuka aplikasi dalam mode layar penuh.</p>
-      </div>
-    </section>
 
     <!-- Compact Top App Bar (Always fixed on top) -->
     <header id="app-header" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 pt-safe pb-3 flex items-center justify-between no-print shadow-xs">
@@ -303,7 +190,7 @@
     </div>
 
     <!-- Main Scrollable Viewport -->
-    <main id="app-main" class="flex-1 w-full">
+    <main id="app-main" class="flex-1 w-full overflow-x-hidden">
       <!-- Views dynamically rendered here -->
     </main>
 
@@ -326,7 +213,7 @@
           <div class="nav-indicator w-10 h-7 rounded-full flex items-center justify-center mb-0.5 transition-colors">
             <i data-lucide="compass" class="w-5 h-5"></i>
           </div>
-          <span class="text-[11px] font-semibold tracking-tight">Tours</span>
+          <span class="text-[11px] font-semibold tracking-tight">Explore</span>
         </button>
 
         <button type="button" onclick="navigateTab('bookings')" data-tab="bookings" class="nav-btn touch-target flex flex-col items-center justify-center py-1.5 rounded-xl transition-colors relative">
@@ -374,7 +261,7 @@
   </div>
 
   <!-- Application Logic -->
-  <script type="text/plain" id="application-logic">
+  <script>
     // =========================================================================
     // 1. MOCK TRAVEL DATA (INDONESIA INTERCITY & ISLAND ROUTES)
     // =========================================================================
@@ -439,15 +326,6 @@
       }
     ];
 
-    const TOUR_PACKAGES = [
-      { id: 'bali-escape', region: 'domestic', title: 'Bali Island Escape', destination: 'Bali, Indonesia', duration: '4 hari 3 malam', price: 2850000, rating: '4.9', gradient: 'from-amber-500 via-orange-600 to-rose-800', icon: 'sun', highlights: ['Uluwatu sunset', 'Nusa Penida day trip', 'Hotel bintang 4'], includes: 'Hotel, sarapan, transportasi lokal, dan tur Nusa Penida.' },
-      { id: 'komodo-sailing', region: 'domestic', title: 'Komodo Sailing Adventure', destination: 'Labuan Bajo, Indonesia', duration: '3 hari 2 malam', price: 4250000, rating: '5.0', gradient: 'from-sky-600 via-blue-700 to-indigo-900', icon: 'ship', highlights: ['Pulau Padar', 'Pink Beach', 'Snorkeling'], includes: 'Kabin kapal, makan selama sailing, pemandu, dan perlengkapan snorkeling.' },
-      { id: 'jogja-heritage', region: 'domestic', title: 'Jogja Heritage Weekend', destination: 'Yogyakarta, Indonesia', duration: '3 hari 2 malam', price: 1850000, rating: '4.8', gradient: 'from-teal-600 via-emerald-700 to-slate-900', icon: 'landmark', highlights: ['Candi Borobudur', 'Keraton Yogyakarta', 'Kuliner lokal'], includes: 'Hotel, sarapan, tur kota, dan tiket wisata pilihan.' },
-      { id: 'singapore-city', region: 'international', title: 'Singapore City Highlights', destination: 'Singapore', duration: '3 hari 2 malam', price: 4950000, rating: '4.8', gradient: 'from-violet-600 via-indigo-700 to-slate-900', icon: 'building-2', highlights: ['Gardens by the Bay', 'Marina Bay', 'Kampong Glam'], includes: 'Hotel, sarapan, airport transfer, dan city tour.' },
-      { id: 'thailand-discovery', region: 'international', title: 'Bangkok & Ayutthaya Discovery', destination: 'Thailand', duration: '5 hari 4 malam', price: 7250000, rating: '4.9', gradient: 'from-rose-600 via-red-700 to-orange-900', icon: 'map', highlights: ['Wat Arun', 'Ayutthaya day trip', 'Floating market'], includes: 'Hotel, sarapan, transportasi tur, dan pemandu lokal.' },
-      { id: 'japan-sakura', region: 'international', title: 'Tokyo & Mount Fuji', destination: 'Japan', duration: '6 hari 5 malam', price: 14900000, rating: '5.0', gradient: 'from-pink-500 via-rose-700 to-purple-900', icon: 'mountain', highlights: ['Tokyo city tour', 'Kawaguchiko', 'Mt. Fuji view'], includes: 'Hotel, sarapan, transportasi tur, dan pendamping perjalanan.' }
-    ];
-
     const PROMOS = [
       {
         code: 'ASRI25',
@@ -501,7 +379,6 @@
     const state = {
       activeTab: 'home', // 'home' | 'explore' | 'bookings' | 'account'
       view: 'home',      // 'home' | 'explore' | 'bookings' | 'account' | 'results' | 'detail' | 'passenger' | 'summary' | 'payment' | 'confirmation' | 'eticket'
-      tourRegion: 'domestic',
       search: {
         category: 'train',
         origin: CITIES[0],      // Jakarta
@@ -551,7 +428,6 @@
         }
       ],
       activeTicket: null,
-      selectedTour: null,
       summaryExpanded: false
     };
 
@@ -635,7 +511,6 @@
 
     function handleBackNavigation() {
       const flowBackMap = {
-        'tourDetail': 'explore',
         'results': 'home',
         'detail': 'results',
         'passenger': 'detail',
@@ -723,7 +598,6 @@
       } else {
         // Sub-pages with Back Button
         const subTitles = {
-          tourDetail: 'Detail Paket Tur',
           results: `${state.search.origin.code} → ${state.search.destination.code}`,
           detail: 'Trip Details',
           passenger: 'Passenger Info',
@@ -733,7 +607,6 @@
           eticket: 'Mobile E-Ticket'
         };
         const subSubtitles = {
-          tourDetail: state.selectedTour ? `${state.selectedTour.destination} • ${state.selectedTour.duration}` : '',
           results: `${formatShortDate(state.search.departDate)} • ${getTotalPassengers()} Pax`,
           detail: state.selectedTrip ? state.selectedTrip.operator : '',
           passenger: 'Step 1 of 3',
@@ -847,20 +720,6 @@
             <span>Pay Now • ${formatIDR(grandTotal)}</span>
           </button>
         `;
-      } else if (state.view === 'tourDetail' && state.selectedTour) {
-        container.classList.remove('hidden');
-        container.innerHTML = `
-          <div class="flex items-center justify-between gap-3">
-            <div>
-              <p class="text-[11px] text-slate-500 font-medium">Harga mulai / orang</p>
-              <p class="font-display font-extrabold text-base text-brand-800">${formatIDR(state.selectedTour.price)}</p>
-            </div>
-            <button type="button" onclick="requestTourInfo('${state.selectedTour.id}')" class="touch-target px-5 py-3 rounded-2xl bg-brand-700 hover:bg-brand-800 active:scale-[0.98] text-white font-semibold text-sm shadow-md flex items-center gap-2">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-              <span>Tanya & Pesan</span>
-            </button>
-          </div>
-        `;
       } else if (state.view === 'confirmation') {
         container.classList.remove('hidden');
         container.innerHTML = `
@@ -894,9 +753,6 @@
           break;
         case 'explore':
           main.innerHTML = renderExploreView();
-          break;
-        case 'tourDetail':
-          main.innerHTML = renderTourDetailView();
           break;
         case 'bookings':
           main.innerHTML = renderBookingsView();
@@ -1150,173 +1006,46 @@
     // VIEW 2: EXPLORE TAB
     // -------------------------------------------------------------------------
     function renderExploreView() {
-      const packages = TOUR_PACKAGES.filter(tour => tour.region === state.tourRegion);
       return `
         <div class="screen-enter bottom-nav-padding px-4 pt-4">
-          <div class="bg-gradient-to-br from-brand-800 to-slate-900 rounded-3xl p-4 mb-4 text-white flex items-center gap-3 shadow-sm">
-            <div class="w-11 h-11 rounded-2xl bg-white/15 text-amber-300 flex items-center justify-center shrink-0">
+          <div class="bg-brand-50 border border-brand-200/70 rounded-2xl p-3.5 mb-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center shrink-0">
               <i data-lucide="sparkles" class="w-5 h-5"></i>
             </div>
             <div>
-              <p class="font-display font-bold text-sm">Temukan Paket Perjalanan</p>
-              <p class="text-xs text-teal-100">Pilihan liburan domestik dan internasional</p>
+              <p class="font-display font-bold text-sm text-brand-900">Curated Archipelago Trips</p>
+              <p class="text-xs text-brand-700">One-tap instant route setup from ${state.search.origin.name}</p>
             </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-2 p-1 bg-slate-200/70 rounded-2xl mb-4" role="tablist" aria-label="Kategori paket tur">
-            <button type="button" role="tab" aria-selected="${state.tourRegion === 'domestic'}" onclick="setTourRegion('domestic')" class="touch-target rounded-xl text-xs font-bold transition ${state.tourRegion === 'domestic' ? 'bg-white text-brand-800 shadow-sm' : 'text-slate-600'}">
-              🇮🇩 Domestik
-            </button>
-            <button type="button" role="tab" aria-selected="${state.tourRegion === 'international'}" onclick="setTourRegion('international')" class="touch-target rounded-xl text-xs font-bold transition ${state.tourRegion === 'international' ? 'bg-white text-brand-800 shadow-sm' : 'text-slate-600'}">
-              🌏 Internasional
-            </button>
-          </div>
-
-          <div class="flex items-center justify-between mb-3">
-            <div>
-              <h2 class="font-display font-bold text-base text-slate-900">${state.tourRegion === 'domestic' ? 'Jelajahi Indonesia' : 'Liburan ke Luar Negeri'}</h2>
-              <p class="text-xs text-slate-500">${packages.length} paket pilihan untuk perjalanan Anda</p>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${state.tourRegion === 'domestic' ? 'bg-brand-100 text-brand-800' : 'bg-indigo-100 text-indigo-800'}">${state.tourRegion === 'domestic' ? 'Domestic' : 'International'}</span>
           </div>
 
           <div class="flex flex-col gap-3.5">
-            ${packages.map(tour => `
-              <article class="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-xs">
-                <div class="min-h-36 bg-gradient-to-br ${tour.gradient} p-4 text-white flex flex-col justify-between">
-                  <div class="flex items-start justify-between gap-2">
-                    <span class="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm">${tour.duration}</span>
-                    <span class="text-xs font-bold text-amber-300">★ ${tour.rating}</span>
+            ${DESTINATIONS.map(dest => `
+              <div class="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-xs">
+                <div class="h-32 bg-gradient-to-r ${dest.gradient} p-4 text-white flex flex-col justify-between">
+                  <div class="flex justify-between items-center">
+                    <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-sm">${dest.badge}</span>
+                    <span class="text-xs font-bold text-amber-300">★ ${dest.rating}</span>
                   </div>
-                  <div class="flex items-end justify-between gap-3 mt-5">
-                    <div>
-                      <p class="text-[11px] text-white/80">${tour.destination}</p>
-                      <h3 class="font-display font-extrabold text-lg leading-tight">${tour.title}</h3>
-                    </div>
-                    <i data-lucide="${tour.icon}" class="w-8 h-8 text-white/75 shrink-0"></i>
+                  <div>
+                    <h3 class="font-display font-extrabold text-xl">${dest.city}</h3>
+                    <p class="text-xs text-white/85">${dest.tagline}</p>
                   </div>
                 </div>
-                <div class="p-4">
-                  <div class="flex flex-wrap gap-1.5 mb-3">
-                    ${tour.highlights.map(item => `<span class="text-[10px] font-semibold px-2 py-1 rounded-lg bg-slate-100 text-slate-600">${item}</span>`).join('')}
+                <div class="p-4 flex items-center justify-between">
+                  <div>
+                    <p class="text-[11px] text-slate-400">Starting ticket</p>
+                    <p class="font-display font-extrabold text-sm text-slate-900">${formatIDR(dest.priceFrom)}</p>
                   </div>
-                  <div class="flex items-center justify-between gap-2">
-                    <div>
-                      <p class="text-[10px] text-slate-400">Mulai dari / orang</p>
-                      <p class="font-display font-extrabold text-sm text-brand-800">${formatIDR(tour.price)}</p>
-                    </div>
-                    <button type="button" onclick="openTourDetail('${tour.id}')" class="touch-target px-4 py-2.5 rounded-xl bg-brand-700 text-white font-semibold text-xs flex items-center gap-1.5 active:scale-95 transition">
-                      <span>Lihat Paket</span>
-                      <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                  </div>
+                  <button type="button" onclick="quickSelectDestination('${dest.code}', true)" class="touch-target px-4 py-2.5 rounded-xl bg-brand-700 text-white font-semibold text-xs flex items-center gap-1.5 active:scale-95 transition">
+                    <span>Find Tickets</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
                 </div>
-              </article>
+              </div>
             `).join('')}
           </div>
-
-          <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-3.5 flex items-start gap-2.5">
-            <i data-lucide="badge-info" class="w-4 h-4 text-brand-700 shrink-0 mt-0.5"></i>
-            <p class="text-[11px] leading-relaxed text-slate-600">Harga paket merupakan harga simulasi per orang. Detail jadwal dan ketersediaan dapat dikonfirmasi melalui tim ASRI Travel.</p>
-          </div>
         </div>
       `;
-    }
-
-    function setTourRegion(region) {
-      state.tourRegion = region;
-      renderApp();
-    }
-
-    function openTourDetail(tourId) {
-      const tour = TOUR_PACKAGES.find(item => item.id === tourId);
-      if (!tour) return;
-      state.selectedTour = tour;
-      state.activeTab = 'explore';
-      navigateView('tourDetail');
-    }
-
-    function renderTourDetailView() {
-      const tour = state.selectedTour;
-      if (!tour) return renderExploreView();
-
-      const dayCount = parseInt(tour.duration, 10) || tour.highlights.length;
-      const itinerary = Array.from({ length: dayCount }, (_, index) => ({
-        day: index + 1,
-        activity: tour.highlights[index] || (index === dayCount - 1 ? 'Waktu bebas dan perjalanan kembali' : 'Eksplorasi destinasi bersama pemandu lokal')
-      }));
-
-      return `
-        <div class="screen-enter sticky-cta-padding">
-          <section class="min-h-56 bg-gradient-to-br ${tour.gradient} px-5 py-6 text-white flex flex-col justify-between relative overflow-hidden">
-            <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-white/10 blur-2xl"></div>
-            <div class="relative flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[11px] font-semibold backdrop-blur-sm">${tour.region === 'domestic' ? '🇮🇩 Paket Domestik' : '🌏 Paket Internasional'}</span>
-              <span class="text-sm font-bold text-amber-300">★ ${tour.rating}</span>
-            </div>
-            <div class="relative mt-8">
-              <p class="text-xs text-white/75">${tour.destination}</p>
-              <h2 class="font-display font-extrabold text-2xl leading-tight mt-1">${tour.title}</h2>
-              <div class="flex items-center gap-3 mt-3 text-xs text-white/85">
-                <span class="flex items-center gap-1"><i data-lucide="calendar-days" class="w-4 h-4"></i>${tour.duration}</span>
-                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4"></i>${tour.highlights.length} pengalaman utama</span>
-              </div>
-            </div>
-          </section>
-
-          <div class="px-4 py-4 flex flex-col gap-4">
-            <section class="bg-white rounded-3xl border border-slate-200 p-4">
-              <p class="text-[10px] font-bold uppercase tracking-wider text-brand-700">Tentang perjalanan</p>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-1">Pengalaman pilihan untuk liburan Anda</h3>
-              <p class="text-xs text-slate-600 leading-relaxed mt-2">Jelajahi ${tour.destination} dalam perjalanan ${tour.duration.toLowerCase()} yang dirancang agar Anda dapat menikmati destinasi utama dengan nyaman. Harga paket mulai ${formatIDR(tour.price)} per orang.</p>
-            </section>
-
-            <section class="bg-white rounded-3xl border border-slate-200 p-4">
-              <div class="flex items-center justify-between mb-3">
-                <div><p class="text-[10px] font-bold uppercase tracking-wider text-brand-700">Rencana perjalanan</p><h3 class="font-display font-bold text-base text-slate-900 mt-1">Itinerary</h3></div>
-                <span class="text-[11px] font-semibold text-slate-500">${dayCount} hari</span>
-              </div>
-              <div class="flex flex-col">
-                ${itinerary.map((item, index) => `
-                  <div class="flex gap-3 ${index < itinerary.length - 1 ? 'pb-4' : ''}">
-                    <div class="flex flex-col items-center">
-                      <span class="w-8 h-8 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center text-[11px] font-bold shrink-0">${item.day}</span>
-                      ${index < itinerary.length - 1 ? '<span class="w-px flex-1 bg-brand-100 mt-1"></span>' : ''}
-                    </div>
-                    <div class="pt-1"><p class="text-[10px] uppercase font-bold tracking-wide text-slate-400">Hari ${item.day}</p><p class="text-sm font-semibold text-slate-800 mt-0.5">${item.activity}</p><p class="text-xs text-slate-500 mt-1">Agenda dan waktu dapat menyesuaikan kondisi di lapangan.</p></div>
-                  </div>
-                `).join('')}
-              </div>
-            </section>
-
-            <section class="bg-white rounded-3xl border border-slate-200 p-4">
-              <p class="text-[10px] font-bold uppercase tracking-wider text-brand-700">Pengalaman utama</p>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-1 mb-3">Highlight tur</h3>
-              <div class="flex flex-col gap-2.5">
-                ${tour.highlights.map(item => `<div class="flex items-center gap-2.5 text-xs text-slate-700"><span class="w-7 h-7 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center shrink-0"><i data-lucide="check" class="w-4 h-4"></i></span>${item}</div>`).join('')}
-              </div>
-            </section>
-
-            <section class="bg-white rounded-3xl border border-slate-200 p-4">
-              <p class="text-[10px] font-bold uppercase tracking-wider text-brand-700">Rincian paket</p>
-              <h3 class="font-display font-bold text-base text-slate-900 mt-1 mb-3">Fasilitas & ketentuan</h3>
-              <div class="flex items-start gap-2.5 text-xs text-slate-700"><i data-lucide="circle-check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i><p><strong>Termasuk:</strong> ${tour.includes}</p></div>
-              <div class="flex items-start gap-2.5 text-xs text-slate-600 mt-3"><i data-lucide="circle-minus" class="w-4 h-4 text-slate-400 shrink-0 mt-0.5"></i><p><strong>Belum termasuk:</strong> tiket menuju kota keberangkatan, pengeluaran pribadi, dan biaya opsional di luar itinerary.</p></div>
-            </section>
-
-            <div class="rounded-2xl border border-amber-200 bg-amber-50 p-3.5 flex items-start gap-2.5">
-              <i data-lucide="info" class="w-4 h-4 text-amber-700 shrink-0 mt-0.5"></i>
-              <p class="text-[11px] text-amber-900 leading-relaxed">Harga merupakan estimasi per orang. Jadwal, ketersediaan, dan harga akhir akan dikonfirmasi oleh tim ASRI Travel sebelum pemesanan.</p>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function requestTourInfo(tourId) {
-      const tour = TOUR_PACKAGES.find(item => item.id === tourId);
-      if (!tour) return;
-      showToast(`Permintaan paket ${tour.title} siap. Tim ASRI Travel akan membantu konfirmasi jadwal dan harga.`, 'success');
     }
 
     // -------------------------------------------------------------------------
@@ -2623,71 +2352,14 @@
       document.body.removeChild(tempInput);
     }
 
-    // Prevent browser zoom gestures while keeping normal page scrolling available.
-    function disableBrowserZoom() {
-      ['gesturestart', 'gesturechange', 'gestureend'].forEach(eventName => {
-        document.addEventListener(eventName, event => event.preventDefault(), { passive: false });
-      });
-
-      document.addEventListener('touchmove', event => {
-        if (event.touches.length > 1) event.preventDefault();
-      }, { passive: false });
-
-      document.addEventListener('wheel', event => {
-        if (event.ctrlKey || event.metaKey) event.preventDefault();
-      }, { passive: false });
-
-      document.addEventListener('keydown', event => {
-        if ((event.ctrlKey || event.metaKey) && ['+', '-', '=', '0', 'Add', 'Subtract'].includes(event.key)) {
-          event.preventDefault();
-        }
-      });
-    }
-
-    function isAppFullscreen() {
-      return Boolean(document.fullscreenElement || document.webkitFullscreenElement);
-    }
-
-    async function enterApp() {
-      const shell = document.getElementById('mobile-app-shell');
-      const splash = document.getElementById('splash-screen');
-      const hint = document.getElementById('splash-hint');
-      const requestFullscreen = shell.requestFullscreen || shell.webkitRequestFullscreen;
-
-      if (!requestFullscreen) {
-        hint.textContent = 'Mode layar penuh tidak didukung browser ini. Coba buka di browser yang mendukung Fullscreen API.';
-        return;
-      }
-
-      try {
-        await requestFullscreen.call(shell);
-        if (isAppFullscreen()) splash.classList.add('hidden');
-      } catch (error) {
-        hint.textContent = 'Mode layar penuh tidak dapat dibuka. Ketuk tombol untuk mencoba lagi.';
-      }
-    }
-
-    function syncSplashWithFullscreen() {
-      const splash = document.getElementById('splash-screen');
-      const hint = document.getElementById('splash-hint');
-
-      if (isAppFullscreen()) {
-        splash.classList.add('hidden');
-      } else {
-        splash.classList.remove('hidden');
-        hint.textContent = 'Ketuk tombol untuk membuka aplikasi dalam mode layar penuh.';
-      }
-    }
-
     // Initialize Application
     window.addEventListener('DOMContentLoaded', () => {
-      disableBrowserZoom();
       renderApp();
-      document.addEventListener('fullscreenchange', syncSplashWithFullscreen);
-      document.addEventListener('webkitfullscreenchange', syncSplashWithFullscreen);
+      // Automatically open the Visitor Guide on first app launch
+      setTimeout(() => {
+        openVisitorGuideModal(0);
+      }, 400);
     });
   </script>
-  <script src="script.js"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"e3c1c9af36de41759418005494a48906","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
