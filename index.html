@@ -1345,53 +1345,57 @@
 
     async function processMockPayment() {
       const trip = state.selectedTrip;
-      if (!trip) return;
+      if (!trip || state.paymentRequestInFlight) return;
 
       const grandTotal = calculateGrandTotal();
-      const bookingRef = 'ASRI-' + Math.floor(10000 + Math.random() * 89999);
+      if (!Number.isSafeInteger(grandTotal) || grandTotal < 10000) {
+        showToast('Nominal pembayaran tidak valid.', 'error');
+        return;
+      }
 
-      showToast('Membuat invoice pembayaran via Edge Function...', 'info');
+      state.paymentRequestInFlight = true;
+      state.pendingPaymentReferenceId ||= 'ASRI-' + crypto.randomUUID();
+      const bookingRef = state.pendingPaymentReferenceId;
+      const payButton = document.querySelector('#sticky-cta-bar button');
+      if (payButton) payButton.disabled = true;
+
+      showToast('Membuat invoice pembayaran via Poketo...', 'info');
 
       try {
-        await fetch('https://xbjvvsuyrryibyrjehko.supabase.co/functions/v1/poketo-create-invoice', {
+        const response = await fetch('https://gwifvnzbkqkdcithogwj.supabase.co/functions/v1/poketo-create-invoice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            referenceId: bookingRef,
             amount: grandTotal,
-            external_id: bookingRef,
-            payer_email: state.bookingForm.contactEmail,
-            description: `ASRI Travel Ticket ${state.search.origin.code} -> ${state.search.destination.code} (${bookingRef})`,
-            payment_method: 'edge_function_gateway'
+            title: `ASRI TRAVEL - ${state.search.origin.name} ke ${state.search.destination.name}`,
+            customer: {
+              name: state.bookingForm.contactName,
+              email: state.bookingForm.contactEmail
+            }
           })
         });
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          const message = result?.error || result?.message || `HTTP ${response.status}`;
+          throw new Error(message);
+        }
+
+        const paymentUrl = result?.data?.paymentUrl;
+        if (typeof paymentUrl !== 'string' || !/^https:\/\//i.test(paymentUrl)) {
+          throw new Error('payment_url_missing');
+        }
+
+        showToast('Invoice berhasil dibuat. Mengalihkan ke halaman pembayaran...', 'success');
+        window.location.assign(paymentUrl);
       } catch (err) {
-        console.warn('Network integration note:', err);
+        console.error('Poketo invoice error:', err);
+        showToast(`Pembayaran gagal dibuat: ${err.message || 'Silakan coba lagi.'}`, 'error');
+      } finally {
+        state.paymentRequestInFlight = false;
+        if (payButton) payButton.disabled = false;
       }
-
-      const newBooking = {
-        bookingRef: bookingRef,
-        status: 'CONFIRMED',
-        bookedAt: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
-        category: state.search.category,
-        operator: trip.operator,
-        code: trip.code,
-        origin: state.search.origin,
-        destination: state.search.destination,
-        departDate: state.search.departDate,
-        dep: trip.dep,
-        arr: trip.arr,
-        duration: trip.duration,
-        seatClass: trip.class,
-        seats: [...state.selectedSeats],
-        passengers: JSON.parse(JSON.stringify(state.bookingForm.passengers)),
-        totalPaid: grandTotal,
-        paymentMethod: 'Supabase Edge Function'
-      };
-
-      state.bookings.unshift(newBooking);
-      state.activeTicket = newBooking;
-      state.bookingForm.discountAmount = 0;
-      navigateView('confirmation');
     }
 
     function openActiveTicket() {
